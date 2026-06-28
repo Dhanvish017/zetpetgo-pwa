@@ -18,6 +18,7 @@ import ReportMainScreen from "./screens/report/reportscreen.jsx";
 import TemplateSettingsScreen from "./screens/settings/Templatesettingsscreen.jsx";
 import NotifyScreen from "./screens/settings/NotifyScreen.jsx";
 import CreateAccountScreen from "./screens/profile/CreateAccountScreen.jsx";
+import ProtectedRoute from "./components/ProtectedRoute";
 function App() {
   return (
     <Routes>
@@ -26,21 +27,51 @@ function App() {
 
       {/* Layout route — MainTabs renders sidebar/topbar + <Outlet /> */}
       <Route element={<MainTabs />}>
-        <Route path="/dashboard" element={<DashboardScreen />} />
-        <Route path="/animals" element={<AnimalDetailScreen />} />
-        <Route path="/analytics" element={<AnalyticScreen />} />
-        <Route path="/reports" element={<ReportMainScreen />} />
-        <Route path="/notifications" element={<NotificationScreen />} />
-        <Route path="/profile" element={<ProfileScreen />} />
-        <Route path="/addanimal" element={<AddAnimalScreen />} />
-        <Route path="/addactivity" element={<AddActivityScreen />} />
-        <Route path="/owner/:ownerId" element={<OwnerSingleScreen />} />
-        <Route path="/animal/:animalId" element={<AnimalSingleScreen />} />
-        <Route path="/animals/add" element={<AddanimalScreen />} />
-        <Route path="/report/:animalId" element={<ReportScreen />} />
-        <Route path="/schedule-template" element={<TemplateSettingsScreen />} />
-        <Route path="/notification-template" element={<NotifyScreen />} />
-        <Route path="/create-account" element={<CreateAccountScreen />} />
+        <Route path="/dashboard" element={<ProtectedRoute>
+          <DashboardScreen />
+        </ProtectedRoute>} />
+        <Route path="/animals" element={<ProtectedRoute>
+          <AnimalDetailScreen />
+        </ProtectedRoute>} />
+        <Route path="/analytics" element={<ProtectedRoute>
+          <AnalyticScreen />
+        </ProtectedRoute>} />
+        <Route path="/reports" element={<ProtectedRoute>
+          <ReportMainScreen />
+        </ProtectedRoute>} />
+        <Route path="/notifications" element={<ProtectedRoute>
+          <NotificationScreen />
+        </ProtectedRoute>} />
+        <Route path="/profile" element={<ProtectedRoute>
+          <ProfileScreen />
+        </ProtectedRoute>} />
+        <Route path="/addanimal" element={<ProtectedRoute>
+          <AddAnimalScreen />
+        </ProtectedRoute>} />
+        <Route path="/addactivity" element={<ProtectedRoute>
+          <AddActivityScreen />
+        </ProtectedRoute>} />
+        <Route path="/owner/:ownerId" element={<ProtectedRoute>
+          <OwnerSingleScreen />
+        </ProtectedRoute>} />
+        <Route path="/animal/:animalId" element={<ProtectedRoute>
+          <AnimalSingleScreen />
+        </ProtectedRoute>} />
+        <Route path="/animals/add" element={<ProtectedRoute>
+          <AddanimalScreen />
+        </ProtectedRoute>} />
+        <Route path="/report/:animalId" element={<ProtectedRoute>
+          <ReportScreen />
+        </ProtectedRoute>} />
+        <Route path="/schedule-template" element={<ProtectedRoute>
+          <TemplateSettingsScreen />
+        </ProtectedRoute>} />
+        <Route path="/notification-template" element={<ProtectedRoute>
+          <NotifyScreen />
+        </ProtectedRoute>} />
+        <Route path="/create-account" element={<ProtectedRoute>
+          <CreateAccountScreen />
+        </ProtectedRoute>} />
       </Route>
     </Routes>
   );
