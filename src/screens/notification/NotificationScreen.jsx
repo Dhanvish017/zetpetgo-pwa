@@ -235,7 +235,13 @@ const NotificationsScreen = () => {
       if (phone.length === 10) phone = "91" + phone;
       else if (!(phone.length === 12 && phone.startsWith("91"))) { alert("Invalid phone number"); return; }
 
-      window.open(`https://wa.me/${phone}?text=${encodeURIComponent(message)}`, "_blank");
+      const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+
+      const whatsappUrl = isMobile
+        ? `https://wa.me/${phone}?text=${encodeURIComponent(message)}`
+        : `https://web.whatsapp.com/send?phone=${phone}&text=${encodeURIComponent(message)}`;
+
+      window.open(whatsappUrl, "_blank");
 
       let endpoint = "send-whatsapp";
       if (activeTab === "missed") endpoint = "send-followup";
