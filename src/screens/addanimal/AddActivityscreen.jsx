@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
-import "./AddActivityScreen.css";
+import "./AddActivityscreen.css";
 
 const API_BASE = "https://vetcare-1.onrender.com";
 

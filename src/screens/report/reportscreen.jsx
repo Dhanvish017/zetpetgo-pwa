@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import styles from "./ReportScreen.module.css";
+import styles from "./reportscreen.module.css";
 
 const API_BASE = "https://vetcare-1.onrender.com";
 

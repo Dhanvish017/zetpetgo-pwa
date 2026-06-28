@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import styles from "./TemplateSettingsScreen.module.css";
+import styles from "./Templatesettingsscreen.module.css";
 
 const API_BASE = "https://vetcare-1.onrender.com";
 
