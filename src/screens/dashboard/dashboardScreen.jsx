@@ -70,7 +70,7 @@ const VisitCard = ({ icon, label, value, color, bg, loading }) => (
 // =====================
 // DASHBOARD SCREEN
 // =====================
-const DashboardScreen = ({ onOpenDrawer }) => {
+const dashboardScreen = ({ onOpenDrawer }) => {
   const navigate = useNavigate();
 
   const [loading, setLoading] = useState(true);
@@ -282,4 +282,4 @@ const DashboardScreen = ({ onOpenDrawer }) => {
   );
 };
 
-export default DashboardScreen;
+export default dashboardScreen;
