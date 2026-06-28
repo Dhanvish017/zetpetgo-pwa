@@ -151,7 +151,7 @@ const OwnerSingleScreen = () => {
                 )}
             </div>
 
-            {/* FOOTER BUTTONS */}
+            {/* FOOTER BUTTONSss */}
             <div className={styles.buttonContainer}>
                 <button
                     type="button"
