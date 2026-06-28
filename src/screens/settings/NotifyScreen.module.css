@@ -1,0 +1,340 @@
+/* =========================
+   CONTAINER — fills full page
+========================= */
+.mainContainer {
+    min-height: 100vh;
+    width: 100%;
+    background-color: #f4f6fb;
+    display: flex;
+    flex-direction: column;
+}
+
+/* =========================
+   HEADER
+========================= */
+.header {
+    background: linear-gradient(90deg, #4a6cf7, #2541b2);
+    padding: 48px 20px 20px 20px;
+    flex-shrink: 0;
+}
+
+.headerInner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.backButton {
+    position: absolute;
+    left: 0;
+    top: 0;
+    background: none;
+    border: none;
+    padding: 8px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    border-radius: 10px;
+    transition: background 0.15s ease;
+}
+
+.backButton:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.headerTitle {
+    font-size: 22px;
+    font-weight: 700;
+    color: #fff;
+    letter-spacing: 0.4px;
+    text-align: center;
+}
+
+.headerBadge {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 4px;
+    margin-top: 8px;
+    background: rgba(255, 255, 255, 0.2);
+    padding: 4px 12px;
+    border-radius: 20px;
+}
+
+.headerBadgeText {
+    color: #fff;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+/* =========================
+   SCROLL / CONTENT
+========================= */
+.scrollView {
+    flex: 1;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+.container {
+    padding: 16px;
+    padding-bottom: 50px;
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.pageSubtitle {
+    font-size: 13px;
+    color: #6b7280;
+    margin-bottom: 16px;
+    line-height: 1.5;
+}
+
+/* =========================
+   CATEGORY BLOCK
+========================= */
+.categoryBlock {
+    margin-bottom: 20px;
+}
+
+.categoryHeader {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    background: #fff;
+    border-left: 4px solid;
+    border-radius: 12px;
+    padding: 12px 14px;
+    margin-bottom: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+    gap: 10px;
+    cursor: pointer;
+    width: 100%;
+    text-align: left;
+    border-top: none;
+    border-right: none;
+    border-bottom: none;
+    font-family: inherit;
+    transition: box-shadow 0.15s ease;
+}
+
+.categoryHeader:hover {
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
+}
+
+.categoryIconWrap {
+    width: 38px;
+    height: 38px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.categoryLabelWrap {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    min-width: 0;
+}
+
+.categoryLabel {
+    font-size: 15px;
+    font-weight: 700;
+}
+
+.categoryCount {
+    font-size: 11px;
+    color: #9ca3af;
+}
+
+.activePillRow {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 4px;
+    margin-top: 2px;
+}
+
+.activePillText {
+    font-size: 11px;
+    font-weight: 600;
+}
+
+/* =========================
+   TEMPLATE CARD
+========================= */
+.card {
+    width: 100%;
+    background: #fff;
+    border-radius: 12px;
+    margin-bottom: 8px;
+    border: 1.5px solid #e5e7eb;
+    padding: 14px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
+    cursor: pointer;
+    text-align: left;
+    font-family: inherit;
+    transition: border-color 0.15s ease, background 0.15s ease, box-shadow 0.15s ease;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+}
+
+.card:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.cardSelected {
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.cardRow {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 12px;
+}
+
+.radioOuter {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 2px solid #d1d5db;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 2px;
+    flex-shrink: 0;
+    transition: border-color 0.15s ease;
+}
+
+.radioInner {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+}
+
+.cardContent {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    min-width: 0;
+}
+
+.cardTitle {
+    font-size: 14px;
+    font-weight: 700;
+    color: #1f2937;
+    display: block;
+}
+
+.cardPreview {
+    font-size: 13px;
+    color: #6b7280;
+    line-height: 1.5;
+    display: block;
+}
+
+.selectedBadge {
+    display: inline-flex;
+    align-items: center;
+    align-self: flex-start;
+    gap: 4px;
+    margin-top: 10px;
+    padding: 4px 10px;
+    border-radius: 20px;
+}
+
+.selectedBadgeText {
+    color: #fff;
+    font-size: 11px;
+    font-weight: 700;
+}
+
+/* =========================
+   LOADING
+========================= */
+.center {
+    min-height: 100vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f4f6fb;
+}
+
+.spinner {
+    width: 44px;
+    height: 44px;
+    border: 4px solid #dbeafe;
+    border-top-color: #4a6cf7;
+    border-radius: 50%;
+    animation: spin 0.75s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* =========================
+   DESKTOP — 2-col grid for cards
+========================= */
+@media (min-width: 900px) {
+    .container {
+        padding: 24px 32px 50px 32px;
+    }
+
+    /* Each category block stacks normally but cards inside go 2-col */
+    .categoryBlock .card+.card {
+        /* Cards remain stacked per category — keeps UX clear */
+    }
+
+    /* Lay categories in 2-column grid on desktop */
+    .container>.categoryBlock {
+        display: inline-block;
+        width: calc(50% - 8px);
+        vertical-align: top;
+    }
+
+    .container>.categoryBlock:nth-child(odd) {
+        margin-right: 16px;
+    }
+
+    .container>p.pageSubtitle {
+        display: block;
+        width: 100%;
+    }
+}
+
+/* =========================
+   MOBILE
+========================= */
+@media (max-width: 600px) {
+    .header {
+        padding: 48px 16px 16px 16px;
+    }
+
+    .container {
+        padding: 12px 12px 40px 12px;
+    }
+
+    .categoryHeader {
+        padding: 10px 12px;
+    }
+
+    .card {
+        padding: 12px;
+    }
+}

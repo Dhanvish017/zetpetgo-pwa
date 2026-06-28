@@ -1,0 +1,290 @@
+/* =========================
+   ROOT — fills full page, centers card on desktop
+========================= */
+.root {
+    min-height: 100vh;
+    width: 100%;
+    background-color: #f8f9fa;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 40px 16px;
+    box-sizing: border-box;
+}
+
+/* =========================
+   CARD — centered white panel on desktop,
+   full width on mobile
+========================= */
+.card {
+    width: 100%;
+    max-width: 520px;
+    background: #f8f9fa;
+    padding: 0;
+}
+
+/* =========================
+   HEADER
+========================= */
+.header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 36px;
+    gap: 8px;
+}
+
+.title {
+    font-size: 28px;
+    font-weight: 700;
+    color: #212529;
+    text-align: center;
+}
+
+.subtitle {
+    font-size: 16px;
+    color: #6c757d;
+    text-align: center;
+}
+
+/* =========================
+   SECTION TITLE
+========================= */
+.sectionTitle {
+    display: block;
+    font-size: 18px;
+    font-weight: 600;
+    color: #495057;
+    margin-bottom: 16px;
+}
+
+/* =========================
+   ACCOUNT TYPE SELECTION
+========================= */
+.selectionContainer {
+    margin-bottom: 32px;
+}
+
+.typeContainer {
+    display: flex;
+    flex-direction: row;
+    gap: 16px;
+}
+
+.typeCard {
+    flex: 1;
+    background: #fff;
+    border-radius: 12px;
+    padding: 24px 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    border: 2px solid #e9ecef;
+    cursor: pointer;
+    font-family: inherit;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    transition: border-color 0.2s ease, background 0.2s ease, transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.typeCard:hover {
+    border-color: #6a7bff;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(106, 123, 255, 0.18);
+}
+
+.typeCard:active {
+    transform: scale(0.98);
+}
+
+.typeCardSelected {
+    background: #6a7bff;
+    border-color: #6a7bff;
+    box-shadow: 0 6px 20px rgba(106, 123, 255, 0.38);
+}
+
+.typeText {
+    font-size: 15px;
+    font-weight: 600;
+    color: #495057;
+    text-align: center;
+}
+
+.typeTextSelected {
+    color: #fff;
+}
+
+/* =========================
+   FORM
+========================= */
+.formContainer {
+    margin-bottom: 32px;
+}
+
+.inputGroup {
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.label {
+    font-size: 15px;
+    font-weight: 600;
+    color: #495057;
+}
+
+.input {
+    border: 1.5px solid #dee2e6;
+    border-radius: 10px;
+    padding: 13px 16px;
+    font-size: 15px;
+    background: #fff;
+    color: #212529;
+    font-family: inherit;
+    outline: none;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.input:focus {
+    border-color: #6a7bff;
+    box-shadow: 0 0 0 3px rgba(106, 123, 255, 0.12);
+}
+
+.input::placeholder {
+    color: #adb5bd;
+}
+
+.inputError {
+    border-color: #dc3545;
+}
+
+.inputError:focus {
+    box-shadow: 0 0 0 3px rgba(220, 53, 69, 0.12);
+}
+
+/* =========================
+   VALIDATION ERRORS
+========================= */
+.errorText {
+    display: block;
+    font-size: 13px;
+    color: #dc3545;
+    margin-bottom: 10px;
+    font-weight: 500;
+}
+
+.fieldError {
+    display: block;
+    font-size: 12px;
+    color: #dc3545;
+    font-weight: 500;
+}
+
+/* =========================
+   BUTTONS
+========================= */
+.buttonContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.primaryButton {
+    width: 100%;
+    background: #6a7bff;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 700;
+    padding: 16px;
+    border-radius: 12px;
+    border: none;
+    cursor: pointer;
+    font-family: inherit;
+    box-shadow: 0 4px 14px rgba(106, 123, 255, 0.38);
+    transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+}
+
+.primaryButton:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 8px 20px rgba(106, 123, 255, 0.48);
+}
+
+.primaryButton:active {
+    transform: scale(0.98);
+}
+
+.buttonDisabled {
+    background: #adb5bd;
+    box-shadow: none;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.skipButton {
+    width: 100%;
+    background: transparent;
+    border: none;
+    padding: 12px;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 15px;
+    color: #6c757d;
+    text-decoration: underline;
+    text-align: center;
+    transition: color 0.15s ease;
+}
+
+.skipButton:hover {
+    color: #495057;
+}
+
+/* =========================
+   DESKTOP — wider card with subtle shadow
+========================= */
+@media (min-width: 640px) {
+    .root {
+        align-items: center;
+        padding: 60px 24px;
+        background: linear-gradient(135deg, #f0f2ff 0%, #f8f9fa 100%);
+    }
+
+    .card {
+        background: #fff;
+        padding: 44px 48px;
+        border-radius: 20px;
+        box-shadow: 0 8px 40px rgba(0, 0, 0, 0.1);
+    }
+
+    .typeCard {
+        padding: 28px 20px;
+    }
+}
+
+/* =========================
+   MOBILE
+========================= */
+@media (max-width: 480px) {
+    .root {
+        padding: 24px 16px;
+        align-items: flex-start;
+    }
+
+    .title {
+        font-size: 24px;
+    }
+
+    .typeContainer {
+        gap: 10px;
+    }
+
+    .typeCard {
+        padding: 18px 10px;
+    }
+
+    .typeText {
+        font-size: 13px;
+    }
+}

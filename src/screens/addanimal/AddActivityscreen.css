@@ -1,0 +1,688 @@
+/* AddActivityScreen.css */
+
+* {
+  box-sizing: border-box;
+}
+
+.safeArea {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background-color: #4a6cf7;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  position: relative;
+  overflow: hidden;
+}
+
+/* ---------------- Header ---------------- */
+.header {
+  background-color: #4a6cf7;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 22px 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
+  flex-shrink: 0;
+}
+
+.backBtn {
+  width: 36px;
+  height: 36px;
+  border-radius: 18px;
+  background-color: rgba(255, 255, 255, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  color: #fff;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.headerCenter {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.headerIcon {
+  font-size: 18px;
+}
+
+.headerTitle {
+  font-size: 22px;
+  font-weight: 800;
+  color: #fff;
+  letter-spacing: 0.4px;
+}
+
+.headerSpacer {
+  width: 36px;
+}
+
+/* ---------------- Species banner ---------------- */
+.speciesBanner {
+  background-color: rgba(255, 255, 255, 0.15);
+  display: flex;
+  justify-content: center;
+  padding: 6px 0;
+  flex-shrink: 0;
+}
+
+.speciesBannerText {
+  color: #fff;
+  font-weight: 600;
+  font-size: 13px;
+}
+
+/* ---------------- Loading ---------------- */
+.loadingScreen {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #eef2ff;
+  gap: 12px;
+}
+
+.spinner {
+  width: 36px;
+  height: 36px;
+  border: 4px solid #c7d2fe;
+  border-top-color: #4a6cf7;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+.spinnerSmall {
+  width: 18px;
+  height: 18px;
+  border: 3px solid rgba(255, 255, 255, 0.4);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+  display: inline-block;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.loadingText {
+  color: #64748b;
+  font-size: 14px;
+}
+
+/* ---------------- Tab bar ---------------- */
+.tabBar {
+  display: flex;
+  background-color: #fff;
+  border-bottom: 1px solid #e0e7ff;
+  flex-shrink: 0;
+}
+
+.tabBtn {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 12px 0;
+  border: none;
+  border-bottom: 3px solid transparent;
+  background: transparent;
+  cursor: pointer;
+}
+
+.tabBtnActive {
+  border-bottom-color: #4a6cf7;
+}
+
+.tabIcon {
+  font-size: 15px;
+  filter: grayscale(1) opacity(0.6);
+}
+
+.tabIconActive {
+  filter: none;
+}
+
+.tabText {
+  font-size: 14px;
+  font-weight: 600;
+  color: #94a3b8;
+}
+
+.tabTextActive {
+  color: #4a6cf7;
+}
+
+.stepBadge {
+  width: 18px;
+  height: 18px;
+  border-radius: 9px;
+  background-color: #e0e7ff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 4px;
+  font-size: 10px;
+  font-weight: 700;
+  color: #fff;
+}
+
+.stepBadgeActive {
+  background-color: #4a6cf7;
+}
+
+.stepBadgeDone {
+  background-color: #10b981;
+}
+
+/* ---------------- Template button ---------------- */
+.templateBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background-color: #4a6cf7;
+  padding: 10px 0;
+  border-bottom: 1px solid #c7d2fe;
+  border: none;
+  color: #fff;
+  font-weight: 700;
+  font-size: 13px;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+/* ---------------- Body ---------------- */
+.body {
+  flex: 1;
+  overflow-y: auto;
+  background-color: #eef2ff;
+  padding: 14px;
+  padding-bottom: 20px;
+}
+
+.tableScroll {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.tableInner {
+  min-width: max-content;
+}
+
+.tableHeader {
+  display: flex;
+  background-color: #4a6cf7;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  padding: 10px 0;
+}
+
+.th {
+  color: #fff;
+  font-weight: 700;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+  text-align: center;
+  padding: 0 4px;
+  flex-shrink: 0;
+  white-space: pre-line;
+}
+
+.tableRow {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #c7d2fe;
+  min-height: 52px;
+}
+
+.rowEven {
+  background-color: #fff;
+}
+
+.rowOdd {
+  background-color: #eef2ff;
+}
+
+.td {
+  padding: 0 4px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.cellInput {
+  border: 1px solid #c7d2fe;
+  border-radius: 8px;
+  padding: 5px 8px;
+  font-size: 13px;
+  color: #1e293b;
+  background-color: #fff;
+  width: 100%;
+  text-align: center;
+  font-family: inherit;
+}
+
+.cellInput:focus {
+  outline: none;
+  border-color: #4a6cf7;
+}
+
+.cellDropdown {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid #c7d2fe;
+  border-radius: 8px;
+  padding: 7px 8px;
+  background-color: #fff;
+  width: 100%;
+  gap: 4px;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.cellDropdownSelected {
+  border-color: #4a6cf7;
+  background-color: #eef2ff;
+}
+
+.cellDropdownText {
+  font-size: 13px;
+  color: #1e293b;
+  flex: 1;
+  text-align: left;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.cellDropdownSelectedText {
+  color: #3730a3;
+  font-weight: 600;
+}
+
+.placeholder {
+  color: #94a3b8;
+}
+
+.chevron {
+  font-size: 12px;
+  color: #64748b;
+}
+
+.chevronActive {
+  color: #4a6cf7;
+}
+
+.stageLocked {
+  background-color: #eef2ff;
+  border-radius: 8px;
+  padding: 7px 10px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  border: 1px solid #c7d2fe;
+}
+
+.stageLockedText {
+  font-size: 13px;
+  font-weight: 700;
+  color: #4a6cf7;
+}
+
+.autoCell {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+}
+
+.autoIcon {
+  font-size: 12px;
+}
+
+.autoText {
+  font-size: 12px;
+  color: #3730a3;
+  font-weight: 600;
+}
+
+.dayBadge {
+  background-color: #c7d2fe;
+  border-radius: 10px;
+  padding: 3px 7px;
+}
+
+.dayText {
+  font-size: 11px;
+  color: #3730a3;
+  font-weight: 700;
+}
+
+.deleteBtn {
+  width: 30px;
+  height: 30px;
+  border-radius: 15px;
+  background-color: #fee2e2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.addRowBtn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 12px;
+  padding: 9px 14px;
+  background-color: #e0e7ff;
+  border-radius: 10px;
+  border: 1px dashed #a5b4fc;
+  color: #4a6cf7;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  width: fit-content;
+}
+
+.infoCard {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  margin-top: 16px;
+  background-color: #e0e7ff;
+  border-radius: 10px;
+  padding: 12px;
+  border: 1px solid #c7d2fe;
+}
+
+.infoIcon {
+  font-size: 14px;
+}
+
+.infoText {
+  font-size: 12px;
+  color: #3730a3;
+  flex: 1;
+  line-height: 17px;
+}
+
+.noSpeciesHint {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 0;
+  gap: 12px;
+}
+
+.noSpeciesIcon {
+  font-size: 36px;
+  opacity: 0.5;
+}
+
+.noSpeciesText {
+  font-size: 14px;
+  color: #94a3b8;
+  text-align: center;
+  line-height: 20px;
+  max-width: 260px;
+}
+
+.bottomSpacer {
+  height: 24px;
+}
+
+/* ---------------- Footer ---------------- */
+.footer {
+  padding: 16px;
+  background-color: #eef2ff;
+  border-top: 1px solid #c7d2fe;
+  flex-shrink: 0;
+}
+
+.footerRow {
+  display: flex;
+  gap: 10px;
+}
+
+.nextBtn {
+  width: 100%;
+  background-color: #4a6cf7;
+  border-radius: 14px;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  color: #fff;
+  font-weight: 700;
+  font-size: 15px;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(74, 108, 247, 0.4);
+}
+
+.nextArrow {
+  margin-left: 8px;
+}
+
+.saveBtn {
+  flex: 1;
+  background-color: #4a6cf7;
+  border-radius: 14px;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border: none;
+  color: #fff;
+  font-weight: 700;
+  font-size: 15px;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(74, 108, 247, 0.4);
+}
+
+.saveBtn:disabled {
+  cursor: not-allowed;
+}
+
+.skipBtn {
+  flex: 1;
+  background-color: #fff;
+  border-radius: 14px;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid #4a6cf7;
+  color: #4a6cf7;
+  font-weight: 700;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.skipBtn:disabled {
+  cursor: not-allowed;
+}
+
+/* ---------------- Modal ---------------- */
+.modalOverlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modalBox {
+  background-color: #fff;
+  border-radius: 16px;
+  width: 78%;
+  max-width: 360px;
+  max-height: 60vh;
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+  display: flex;
+  flex-direction: column;
+}
+
+.dateModalBox {
+  width: 90%;
+  max-width: 400px;
+  max-height: none;
+  padding: 20px;
+}
+
+.modalHeader {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px;
+  background-color: #eef2ff;
+  border-bottom: 1px solid #c7d2fe;
+}
+
+.dateModalBox .modalHeader {
+  padding: 0 0 14px 0;
+  background-color: transparent;
+  border-bottom: none;
+}
+
+.modalIcon {
+  font-size: 16px;
+}
+
+.modalTitle {
+  font-size: 15px;
+  font-weight: 700;
+  color: #3730a3;
+  flex: 1;
+}
+
+.modalSpecies {
+  font-size: 13px;
+  color: #64748b;
+}
+
+.modalList {
+  overflow-y: auto;
+}
+
+.modalItem {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 13px 16px;
+  border: none;
+  border-bottom: 1px solid #f1f5f9;
+  background: #fff;
+  width: 100%;
+  cursor: pointer;
+  text-align: left;
+}
+
+.modalItem:hover {
+  background-color: #f8faff;
+}
+
+.modalItemIcon {
+  font-size: 14px;
+  color: #4a6cf7;
+}
+
+.modalItemText {
+  font-size: 14px;
+  color: #1e293b;
+}
+
+/* ---------------- Date picker (web) ---------------- */
+.dateDisplayBtn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border: 1px solid #c7d2fe;
+  border-radius: 12px;
+  padding: 14px;
+  background-color: #f8faff;
+  margin: 16px 0 12px 0;
+  cursor: pointer;
+}
+
+.dateDisplayIcon {
+  font-size: 16px;
+}
+
+.dateNativeInput {
+  flex: 1;
+  border: none;
+  background: transparent;
+  font-size: 14px;
+  color: #1e293b;
+  font-weight: 500;
+  font-family: inherit;
+  outline: none;
+}
+
+.applyBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background-color: #4a6cf7;
+  border-radius: 12px;
+  padding: 14px 0;
+  margin-top: 8px;
+  width: 100%;
+  border: none;
+  color: #fff;
+  font-weight: 700;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.applyBtn:disabled {
+  cursor: not-allowed;
+}
+
+/* ---------------- Scrollbars (subtle, matches app palette) ---------------- */
+.body::-webkit-scrollbar,
+.tableScroll::-webkit-scrollbar,
+.modalList::-webkit-scrollbar {
+  height: 8px;
+  width: 8px;
+}
+
+.body::-webkit-scrollbar-thumb,
+.tableScroll::-webkit-scrollbar-thumb,
+.modalList::-webkit-scrollbar-thumb {
+  background-color: #c7d2fe;
+  border-radius: 8px;
+}
+
+.body::-webkit-scrollbar-track,
+.tableScroll::-webkit-scrollbar-track,
+.modalList::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
+/* ---------------- Responsive ---------------- */
+@media (max-width: 480px) {
+  .modalBox {
+    width: 90%;
+  }
+}

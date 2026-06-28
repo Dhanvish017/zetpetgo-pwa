@@ -1,0 +1,377 @@
+/* =========================
+   ROOT — full page, centers card on desktop
+========================= */
+.root {
+    width: 100%;
+    min-height: 100%;
+    background-color: #f8f9fa;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+}
+
+/* =========================
+   PAGE CARD — full-width container
+========================= */
+.pageCard {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+/* =========================
+   HEADER
+========================= */
+.header {
+    background: linear-gradient(135deg, #4a6cf7, #2541b2);
+    padding: 32px 20px 32px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    position: relative;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+}
+
+.backBtn {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background 0.15s ease;
+}
+
+.backBtn:hover {
+    background: rgba(255, 255, 255, 0.35);
+}
+
+.avatar {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 12px;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.22);
+}
+
+.avatarText {
+    font-size: 32px;
+    font-weight: 700;
+    color: #4a6cf7;
+}
+
+.name {
+    font-size: 24px;
+    font-weight: 700;
+    color: #fff;
+    text-align: center;
+}
+
+.phone {
+    font-size: 15px;
+    color: #e0e0e0;
+    text-align: center;
+}
+
+/* =========================
+   PROFILE CARD
+========================= */
+.card {
+    background: #fff;
+    margin: 20px 16px 0 16px;
+    border-radius: 16px;
+    padding: 8px 20px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 16px 0;
+    border-bottom: 1px solid #f0f0f0;
+    gap: 16px;
+}
+
+.row:last-child {
+    border-bottom: none;
+}
+
+.rowIcon {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+}
+
+.rowText {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    min-width: 0;
+}
+
+.rowLabel {
+    font-size: 12px;
+    color: #6c757d;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.rowValue {
+    font-size: 15px;
+    color: #212529;
+    font-weight: 600;
+    word-break: break-word;
+}
+
+/* =========================
+   ACTION BUTTONS
+========================= */
+.actions {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 16px;
+    margin: 32px 16px 40px 16px;
+}
+
+.editBtn,
+.logoutBtn {
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 16px;
+    border-radius: 12px;
+    border: none;
+    cursor: pointer;
+    font-family: inherit;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.editBtn {
+    background: #4a6cf7;
+    box-shadow: 0 4px 14px rgba(74, 108, 247, 0.38);
+}
+
+.editBtn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(74, 108, 247, 0.48);
+}
+
+.logoutBtn {
+    background: #dc3545;
+    box-shadow: 0 4px 14px rgba(220, 53, 69, 0.35);
+}
+
+.logoutBtn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(220, 53, 69, 0.45);
+}
+
+.editBtn:active,
+.logoutBtn:active {
+    transform: scale(0.97);
+}
+
+.btnText {
+    color: #fff;
+    font-size: 15px;
+    font-weight: 600;
+}
+
+/* =========================
+   LOGOUT CONFIRM MODAL
+========================= */
+.modalOverlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.45);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    padding: 20px;
+}
+
+.modalBox {
+    background: #fff;
+    border-radius: 16px;
+    padding: 28px 24px;
+    width: 100%;
+    max-width: 320px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.16);
+}
+
+.modalTitle {
+    font-size: 18px;
+    font-weight: 700;
+    color: #212529;
+}
+
+.modalMessage {
+    font-size: 15px;
+    color: #6c757d;
+    line-height: 1.5;
+}
+
+.modalActions {
+    display: flex;
+    flex-direction: row;
+    gap: 12px;
+    margin-top: 8px;
+}
+
+.modalCancel {
+    flex: 1;
+    padding: 13px;
+    border-radius: 10px;
+    border: 1.5px solid #dee2e6;
+    background: #fff;
+    font-size: 15px;
+    font-weight: 600;
+    color: #6c757d;
+    cursor: pointer;
+    font-family: inherit;
+    transition: background 0.15s ease;
+}
+
+.modalCancel:hover {
+    background: #f8f9fa;
+}
+
+.modalConfirm {
+    flex: 1;
+    padding: 13px;
+    border-radius: 10px;
+    border: none;
+    background: #dc3545;
+    font-size: 15px;
+    font-weight: 600;
+    color: #fff;
+    cursor: pointer;
+    font-family: inherit;
+    transition: background 0.15s ease;
+}
+
+.modalConfirm:hover {
+    background: #c82333;
+}
+
+/* =========================
+   LOADING
+========================= */
+.loadingContainer {
+    width: 100%;
+    min-height: 50vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    gap: 14px;
+}
+
+.spinner {
+    width: 44px;
+    height: 44px;
+    border: 4px solid #dbeafe;
+    border-top-color: #4a6cf7;
+    border-radius: 50%;
+    animation: spin 0.75s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.loadingText {
+    font-size: 16px;
+    color: #4a6cf7;
+    font-weight: 500;
+}
+
+/* =========================
+   DESKTOP
+========================= */
+@media (min-width: 769px) {
+    .card {
+        max-width: 600px;
+        width: 100%;
+        margin: 24px auto 0 auto;
+    }
+
+    .actions {
+        max-width: 600px;
+        width: 100%;
+        margin: 32px auto 40px auto;
+    }
+}
+
+/* =========================
+   MOBILE
+========================= */
+@media (max-width: 768px) {
+    .header {
+        padding: 24px 16px 24px 16px;
+    }
+
+    .backBtn {
+        top: 16px;
+        left: 16px;
+        width: 36px;
+        height: 36px;
+    }
+
+    .avatar {
+        width: 80px;
+        height: 80px;
+    }
+
+    .avatarText {
+        font-size: 26px;
+    }
+
+    .name {
+        font-size: 20px;
+    }
+
+    .phone {
+        font-size: 14px;
+    }
+
+    .card {
+        margin: 16px 12px 0 12px;
+    }
+
+    .actions {
+        flex-direction: column;
+        margin: 24px 12px 32px 12px;
+    }
+
+    .editBtn,
+    .logoutBtn {
+        width: 100%;
+    }
+}

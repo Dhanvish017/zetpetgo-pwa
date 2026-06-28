@@ -1,0 +1,594 @@
+/* =========================
+   ROOT CONTAINER
+========================= */
+.container {
+  min-height: 100vh;
+  width: 100%;
+  background: linear-gradient(135deg, #94b0ff 0%, #e8eeff 50%, #f5f0ff 100%);
+  display: flex;
+  flex-direction: column;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.fadeIn {
+  opacity: 1;
+}
+
+/* =========================
+   PROGRESS BAR
+========================= */
+.progressContainer {
+  padding: 18px 32px 8px 32px;
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid rgba(74, 108, 247, 0.1);
+  position: absolute;
+  top: 0;
+  z-index: 10;
+}
+
+.progressBarBackground {
+  height: 8px;
+  background-color: #dbeafe;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.progressBarFill {
+  height: 100%;
+  border-radius: 4px;
+  background: linear-gradient(90deg, #4a6cf7, #7c3aed);
+  transition: width 0.5s ease;
+}
+
+.progressText {
+  display: block;
+  text-align: right;
+  font-size: 12px;
+  color: #4a6cf7;
+  font-weight: 700;
+  margin-top: 5px;
+  letter-spacing: 0.3px;
+}
+
+/* =========================
+   XP FEEDBACK
+========================= */
+.xpWrapper {
+  position: fixed;
+  top: 80px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 9999;
+  pointer-events: none;
+}
+
+.xpContainer {
+  background: rgba(74, 108, 247, 0.92);
+  padding: 8px 18px;
+  border-radius: 20px;
+  animation: xpFloat 1.2s ease forwards;
+}
+
+.xpText {
+  color: #fff;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+@keyframes xpFloat {
+  0% {
+    opacity: 0;
+    transform: translateY(0);
+  }
+
+  20% {
+    opacity: 1;
+  }
+
+  80% {
+    opacity: 1;
+    transform: translateY(-28px);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateY(-36px);
+  }
+}
+
+/* =========================
+   SCROLLABLE CONTENT
+========================= */
+.scrollContent {
+  flex: 1;
+  overflow-y: auto;
+  padding: 32px;
+  padding-bottom: 60px;
+  -webkit-overflow-scrolling: touch;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto auto;
+  gap: 28px;
+  align-items: start;
+}
+
+/* Save button spans full width */
+.scrollContent>button:last-child {
+  grid-column: 1 / -1;
+}
+
+/* =========================
+   CARD
+========================= */
+.card {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(12px);
+  border-radius: 24px;
+  padding: 28px;
+  box-shadow: 0 4px 24px rgba(74, 108, 247, 0.1), 0 1px 4px rgba(0, 0, 0, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.card:hover {
+  box-shadow: 0 8px 32px rgba(74, 108, 247, 0.15), 0 2px 8px rgba(0, 0, 0, 0.07);
+  transform: translateY(-2px);
+}
+
+.cardHeader {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 22px;
+  padding-bottom: 16px;
+  border-bottom: 1.5px solid #f0f4ff;
+}
+
+.sectionTitle {
+  font-size: 18px;
+  font-weight: 700;
+  color: #1e293b;
+  letter-spacing: 0.2px;
+}
+
+/* =========================
+   INPUTS
+========================= */
+.inputWrapper {
+  margin-bottom: 16px;
+}
+
+.inputLabel {
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+  color: #475569;
+  margin-bottom: 8px;
+  margin-left: 2px;
+  letter-spacing: 0.3px;
+  text-transform: uppercase;
+}
+
+.modernInput {
+  width: 100%;
+  background: #fff;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 14px;
+  padding: 13px 16px;
+  font-size: 15px;
+  color: #1e293b;
+  min-height: 50px;
+  box-sizing: border-box;
+  outline: none;
+  transition: border-color 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+  font-family: inherit;
+}
+
+.modernInput::placeholder {
+  color: #b0bec5;
+}
+
+.modernInput:focus,
+.inputFocused {
+  border-color: #4a6cf7;
+  background: #f8faff;
+  box-shadow: 0 0 0 3px rgba(74, 108, 247, 0.1);
+}
+
+.modernTextarea {
+  min-height: 96px;
+  resize: none;
+}
+
+.inputDisabled {
+  background: #f8f9fa;
+  color: #90a0b0;
+  cursor: default;
+}
+
+/* =========================
+   CUSTOM BREED DROPDOWN
+========================= */
+.dropdownWrapper {
+  position: relative;
+  margin-bottom: 16px;
+}
+
+.dropdownTrigger {
+  width: 100%;
+  background: #fff;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 14px;
+  padding: 13px 16px;
+  font-size: 15px;
+  color: #1e293b;
+  min-height: 50px;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  font-family: inherit;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.dropdownTrigger:disabled {
+  background: #f8f9fa;
+  color: #90a0b0;
+  cursor: not-allowed;
+}
+
+.dropdownTriggerOpen {
+  border-color: #4a6cf7;
+  background: #f8faff;
+  box-shadow: 0 0 0 3px rgba(74, 108, 247, 0.1);
+}
+
+.dropdownValue {
+  color: #1e293b;
+}
+
+.dropdownPlaceholder {
+  color: #b0bec5;
+}
+
+.dropdownList {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+  right: 0;
+  background: #fff;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 16px;
+  z-index: 999;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.14);
+  overflow: hidden;
+}
+
+.dropdownSearch {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.dropdownSearchInput {
+  border: none;
+  outline: none;
+  font-size: 15px;
+  color: #333;
+  width: 100%;
+  font-family: inherit;
+  background: transparent;
+}
+
+.dropdownItems {
+  max-height: 220px;
+  overflow-y: auto;
+}
+
+.dropdownItem {
+  display: block;
+  width: 100%;
+  text-align: left;
+  padding: 12px 16px;
+  font-size: 15px;
+  color: #333;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+  transition: background 0.1s ease;
+}
+
+.dropdownItem:hover {
+  background: #f1f5f9;
+}
+
+.dropdownItemActive {
+  background: #eff6ff;
+  color: #4a6cf7;
+  font-weight: 600;
+}
+
+.dropdownEmpty {
+  display: block;
+  padding: 14px 16px;
+  color: #94a3b8;
+  font-size: 14px;
+}
+
+/* =========================
+   SPECIES CARDS
+========================= */
+.speciesRow {
+  display: flex;
+  flex-direction: row;
+  gap: 14px;
+  margin-bottom: 22px;
+}
+
+.speciesCard {
+  flex: 1;
+  background: #f8faff;
+  border-radius: 18px;
+  padding: 20px 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid transparent;
+  cursor: pointer;
+  position: relative;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease, background 0.15s ease;
+  font-family: inherit;
+}
+
+.speciesCard:hover {
+  background: #eff6ff;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 14px rgba(74, 108, 247, 0.14);
+}
+
+.speciesCard:active {
+  transform: scale(0.95);
+}
+
+.speciesCardSelected {
+  background: #eff6ff;
+  border-color: #4a6cf7;
+  box-shadow: 0 4px 18px rgba(74, 108, 247, 0.28);
+  transform: scale(1.03);
+}
+
+.speciesEmoji {
+  font-size: 34px;
+  margin-bottom: 8px;
+}
+
+.speciesText {
+  font-size: 16px;
+  font-weight: 600;
+  color: #64748b;
+}
+
+.speciesTextSelected {
+  color: #4a6cf7;
+  font-weight: 700;
+}
+
+.selectedBadge {
+  position: absolute;
+  top: -10px;
+  background: linear-gradient(90deg, #4a6cf7, #7c3aed);
+  color: #fff;
+  font-size: 10px;
+  font-weight: bold;
+  padding: 2px 10px;
+  border-radius: 10px;
+  letter-spacing: 0.3px;
+}
+
+/* =========================
+   AGE BADGE
+========================= */
+.ageBadge {
+  position: absolute;
+  right: 10px;
+  top: 36px;
+  background: #10b981;
+  color: #fff;
+  font-size: 12px;
+  font-weight: bold;
+  padding: 4px 10px;
+  border-radius: 12px;
+  animation: fadeInBadge 0.3s ease;
+}
+
+@keyframes fadeInBadge {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* =========================
+   GENDER TOGGLE
+========================= */
+.genderToggleContainer {
+  display: flex;
+  flex-direction: row;
+  background: #f1f5f9;
+  border-radius: 30px;
+  padding: 4px;
+}
+
+.genderBtn {
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 0;
+  border-radius: 25px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  font-family: inherit;
+  transition: background 0.2s ease, box-shadow 0.2s ease;
+}
+
+.genderBtnActive {
+  background: linear-gradient(90deg, #4a6cf7, #6a3ff7);
+  box-shadow: 0 2px 10px rgba(74, 108, 247, 0.3);
+}
+
+.genderText {
+  font-size: 15px;
+  font-weight: 600;
+  color: #64748b;
+}
+
+.genderTextActive {
+  color: #fff;
+  font-weight: 700;
+}
+
+/* =========================
+   SAVE BUTTON
+========================= */
+.saveButton {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 18px 32px;
+  border-radius: 30px;
+  border: none;
+  background: linear-gradient(90deg, #4a6cf7, #2541b2);
+  cursor: pointer;
+  margin-bottom: 8px;
+  margin-top: 4px;
+  box-shadow: 0 6px 24px rgba(74, 108, 247, 0.4);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  font-family: inherit;
+}
+
+.saveButton:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 32px rgba(74, 108, 247, 0.5);
+}
+
+.saveButton:active {
+  transform: scale(0.97);
+}
+
+.saveButtonText {
+  color: #fff;
+  font-size: 17px;
+  font-weight: 700;
+  letter-spacing: 1.2px;
+}
+
+/* =========================
+   SHAKE ANIMATION
+========================= */
+.shake {
+  animation: shake 0.4s ease;
+}
+
+@keyframes shake {
+  0% {
+    transform: translateX(0);
+  }
+
+  20% {
+    transform: translateX(-10px);
+  }
+
+  40% {
+    transform: translateX(10px);
+  }
+
+  60% {
+    transform: translateX(-10px);
+  }
+
+  80% {
+    transform: translateX(10px);
+  }
+
+  100% {
+    transform: translateX(0);
+  }
+}
+
+/* =========================
+   RESPONSIVE — TABLET
+========================= */
+@media (max-width: 900px) {
+  .scrollContent {
+    grid-template-columns: 1fr;
+    padding: 24px 20px;
+    gap: 20px;
+  }
+
+  .scrollContent>button:last-child {
+    grid-column: 1;
+  }
+
+  .progressContainer {
+    padding: 14px 20px 8px 20px;
+  }
+}
+
+/* =========================
+   RESPONSIVE — MOBILE
+========================= */
+@media (max-width: 600px) {
+  .scrollContent {
+    padding: 16px;
+    gap: 16px;
+  }
+
+  .card {
+    padding: 20px 16px;
+    border-radius: 18px;
+  }
+
+  .progressContainer {
+    padding: 12px 16px 6px 16px;
+  }
+
+  .speciesEmoji {
+    font-size: 28px;
+  }
+
+  .sectionTitle {
+    font-size: 16px;
+  }
+
+  .saveButton {
+    padding: 16px 20px;
+  }
+
+  .saveButtonText {
+    font-size: 15px;
+  }
+
+  .xpWrapper {
+    top: 70px;
+  }
+}
