@@ -22,7 +22,15 @@ import ProtectedRoute from "./components/ProtectedRoute";
 function App() {
   return (
     <Routes>
-      <Route path="/" element={<LoginScreen />} />
+      <Route
+        path="/"
+        element={
+          localStorage.getItem("token")
+            ? <Navigate to="/dashboard" replace />
+            : <Navigate to="/login" replace />
+        }
+      />
+
       <Route path="/login" element={<LoginScreen />} />
 
       {/* Layout route — MainTabs renders sidebar/topbar + <Outlet /> */}
