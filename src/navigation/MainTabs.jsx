@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Outlet, NavLink, useLocation, useNavigate } from "react-router-dom";
 import "./MainTabs.css";
 
@@ -67,7 +67,7 @@ const NAV_ITEMS = [
   },
 ];
 
-const EXTRA_NAV_ITEMS = [
+const SETTINGS_ITEMS = [
   {
     path: "/schedule-template",
     label: "Schedule Template",
@@ -93,7 +93,20 @@ const EXTRA_NAV_ITEMS = [
   },
 ];
 
-const ALL_NAV_ITEMS = [...NAV_ITEMS, ...EXTRA_NAV_ITEMS];
+const ALL_NAV_ITEMS = [...NAV_ITEMS, ...SETTINGS_ITEMS];
+
+const SettingsIcon = ({ active }) => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={active ? 2.2 : 1.8} strokeLinecap="round" strokeLinejoin="round">
+    <circle cx="12" cy="12" r="3" />
+    <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z" />
+  </svg>
+);
+
+const ChevronIcon = () => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2.2} strokeLinecap="round" strokeLinejoin="round" width={14} height={14}>
+    <polyline points="6 9 12 15 18 9" />
+  </svg>
+);
 
 function SidebarNavItem({ item }) {
   return (
@@ -118,11 +131,28 @@ function SidebarNavItem({ item }) {
 
 export default function MainTabs() {
   const [drawerOpen, setDrawerOpen] = useState(false);
+  const [settingsOpen, setSettingsOpen] = useState(false);
+  const [drawerSettingsOpen, setDrawerSettingsOpen] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
 
-  const currentNav = ALL_NAV_ITEMS.find((item) => location.pathname.startsWith(item.path));
-  const pageTitle = currentNav?.label ?? "ZetPetGo";
+  const isSettingsRoute = SETTINGS_ITEMS.some((item) =>
+    location.pathname.startsWith(item.path)
+  );
+
+  useEffect(() => {
+    if (isSettingsRoute) {
+      setSettingsOpen(true);
+      setDrawerSettingsOpen(true);
+    }
+  }, [isSettingsRoute]);
+
+  const currentNav = ALL_NAV_ITEMS.find((item) =>
+    location.pathname.startsWith(item.path)
+  );
+  const pageTitle = isSettingsRoute
+    ? (currentNav?.label ?? "Settings")
+    : (currentNav?.label ?? "ZetPetGo");
 
   return (
     <div className="app-shell">
@@ -146,9 +176,43 @@ export default function MainTabs() {
 
           <div className="sidebar__divider" />
 
-          {EXTRA_NAV_ITEMS.map((item) => (
-            <SidebarNavItem key={item.path} item={item} />
-          ))}
+          {/* Collapsible Settings group */}
+          <div className="sidebar__group">
+            <button
+              className={`sidebar__group-btn${isSettingsRoute ? " sidebar__group-btn--active" : ""}`}
+              onClick={() => setSettingsOpen((s) => !s)}
+              aria-expanded={settingsOpen}
+            >
+              <span className="sidebar__item-icon">
+                <SettingsIcon active={isSettingsRoute} />
+              </span>
+              <span className="sidebar__item-label">Settings</span>
+              <span className={`sidebar__group-chevron${settingsOpen ? " sidebar__group-chevron--open" : ""}`}>
+                <ChevronIcon />
+              </span>
+            </button>
+
+            {settingsOpen && (
+              <div className="sidebar__subnav">
+                {SETTINGS_ITEMS.map((item) => (
+                  <NavLink
+                    key={item.path}
+                    to={item.path}
+                    className={({ isActive }) =>
+                      `sidebar__subitem${isActive ? " sidebar__subitem--active" : ""}`
+                    }
+                  >
+                    {({ isActive }) => (
+                      <>
+                        <span className="sidebar__subitem-icon">{item.icon(isActive)}</span>
+                        <span className="sidebar__item-label">{item.label}</span>
+                      </>
+                    )}
+                  </NavLink>
+                ))}
+              </div>
+            )}
+          </div>
         </nav>
       </aside>
 
@@ -181,23 +245,42 @@ export default function MainTabs() {
         </div>
 
         <nav className="drawer__nav">
-          {EXTRA_NAV_ITEMS.map((item) => (
-            <NavLink
-              key={item.path}
-              to={item.path}
-              className={({ isActive }) =>
-                `drawer__item ${isActive ? "drawer__item--active" : ""}`
-              }
-              onClick={() => setDrawerOpen(false)}
-            >
-              {({ isActive }) => (
-                <>
-                  <span className="drawer__item-icon">{item.icon(isActive)}</span>
-                  <span className="drawer__item-label">{item.label}</span>
-                </>
-              )}
-            </NavLink>
-          ))}
+          {/* Collapsible Settings group in drawer */}
+          <button
+            className={`drawer__group-btn${isSettingsRoute ? " drawer__group-btn--active" : ""}`}
+            onClick={() => setDrawerSettingsOpen((s) => !s)}
+            aria-expanded={drawerSettingsOpen}
+          >
+            <span className="drawer__item-icon">
+              <SettingsIcon active={isSettingsRoute} />
+            </span>
+            <span className="drawer__item-label">Settings</span>
+            <span className={`sidebar__group-chevron${drawerSettingsOpen ? " sidebar__group-chevron--open" : ""}`}>
+              <ChevronIcon />
+            </span>
+          </button>
+
+          {drawerSettingsOpen && (
+            <div className="drawer__subnav">
+              {SETTINGS_ITEMS.map((item) => (
+                <NavLink
+                  key={item.path}
+                  to={item.path}
+                  className={({ isActive }) =>
+                    `drawer__subitem${isActive ? " drawer__subitem--active" : ""}`
+                  }
+                  onClick={() => setDrawerOpen(false)}
+                >
+                  {({ isActive }) => (
+                    <>
+                      <span className="drawer__item-icon">{item.icon(isActive)}</span>
+                      <span className="drawer__item-label">{item.label}</span>
+                    </>
+                  )}
+                </NavLink>
+              ))}
+            </div>
+          )}
         </nav>
       </aside>
 
@@ -233,7 +316,7 @@ export default function MainTabs() {
         </div>
       </main>
 
-      {/* Bottom tab bar — mobile only, only main NAV_ITEMS */}
+      {/* Bottom tab bar — mobile only */}
       <nav className="bottom-tabs" aria-label="Main navigation">
         {NAV_ITEMS.map((item) => (
           <NavLink

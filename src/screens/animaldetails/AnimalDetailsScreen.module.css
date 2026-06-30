@@ -2,238 +2,238 @@
    CONTAINER
 ========================= */
 .container {
-    min-height: 100vh;
-    background-color: #f8f9fa;
-    display: flex;
-    flex-direction: column;
+  min-height: 100vh;
+  background-color: #f8f9fa;
+  display: flex;
+  flex-direction: column;
 }
 
 /* =========================
    HEADER
 ========================= */
 .headerGradient {
-    padding: 48px 20px 24px 20px;
-    background: linear-gradient(135deg, #4c69dd, #2541b2);
-    border-bottom-left-radius: 25px;
-    border-bottom-right-radius: 25px;
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+  padding: 48px 20px 24px 20px;
+  background: linear-gradient(135deg, #4c69dd, #2541b2);
+  border-bottom-left-radius: 25px;
+  border-bottom-right-radius: 25px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
 }
 
 .header {
-    font-size: 28px;
-    font-weight: 700;
-    color: #fff;
-    letter-spacing: 0.5px;
+  font-size: 28px;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: 0.5px;
 }
 
 /* =========================
    SEARCH BOX
 ========================= */
 .searchBox {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    background: #fff;
-    border-radius: 15px;
-    padding: 12px 16px;
-    margin: 16px 16px 12px 16px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
-    gap: 10px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  background: #fff;
+  border-radius: 15px;
+  padding: 12px 16px;
+  margin: 16px 16px 12px 16px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+  gap: 10px;
 }
 
 .searchInput {
-    flex: 1;
-    border: none;
-    outline: none;
-    font-size: 16px;
-    color: #333;
-    background: transparent;
-    font-family: inherit;
+  flex: 1;
+  border: none;
+  outline: none;
+  font-size: 16px;
+  color: #333;
+  background: transparent;
+  font-family: inherit;
 }
 
 .searchInput::placeholder {
-    color: #999;
+  color: #999;
 }
 
 .clearBtn {
-    background: none;
-    border: none;
-    padding: 0;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    flex-shrink: 0;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
 }
 
 /* =========================
    LIST
 ========================= */
 .listContent {
-    padding: 8px 16px 28px 16px;
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
+  padding: 8px 16px 28px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 }
 
 /* =========================
    CARD
 ========================= */
 .card {
-    width: 100%;
-    background: #fff;
-    padding: 18px;
-    border-radius: 15px;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
-    border-left: 4px solid #4a6cf7;
-    cursor: pointer;
-    border-top: none;
-    border-right: none;
-    border-bottom: none;
-    text-align: left;
-    font-family: inherit;
-    transition: transform 0.15s ease, box-shadow 0.15s ease;
-    box-sizing: border-box;
+  width: 100%;
+  background: #fff;
+  padding: 18px;
+  border-radius: 15px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+  border-left: 4px solid #4a6cf7;
+  cursor: pointer;
+  border-top: none;
+  border-right: none;
+  border-bottom: none;
+  text-align: left;
+  font-family: inherit;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  box-sizing: border-box;
 }
 
 .card:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
 }
 
 .card:active {
-    transform: scale(0.98);
+  transform: scale(0.98);
 }
 
 .cardLeft {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-    min-width: 0;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
 }
 
 .ownerName {
-    font-size: 17px;
-    font-weight: 700;
-    color: #1a1a1a;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+  font-size: 17px;
+  font-weight: 700;
+  color: #1a1a1a;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .phone {
-    font-size: 14px;
-    color: #4a6cf7;
-    font-weight: 500;
-    margin-top: 2px;
+  font-size: 14px;
+  color: #4a6cf7;
+  font-weight: 500;
+  margin-top: 2px;
 }
 
 /* =========================
    EMPTY STATE
 ========================= */
 .emptyContainer {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 60px 20px;
-    gap: 12px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 20px;
+  gap: 12px;
 }
 
 .empty {
-    font-size: 18px;
-    font-weight: 500;
-    color: #999;
-    text-align: center;
+  font-size: 18px;
+  font-weight: 500;
+  color: #999;
+  text-align: center;
 }
 
 .emptySubtext {
-    font-size: 14px;
-    color: #bbb;
-    text-align: center;
+  font-size: 14px;
+  color: #bbb;
+  text-align: center;
 }
 
 /* =========================
    LOADING
 ========================= */
 .loadingContainer {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    background-color: #f8f9fa;
-    gap: 16px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #f8f9fa;
+  gap: 16px;
 }
 
 .spinner {
-    width: 44px;
-    height: 44px;
-    border: 4px solid #dbeafe;
-    border-top-color: #4a6cf7;
-    border-radius: 50%;
-    animation: spin 0.75s linear infinite;
+  width: 44px;
+  height: 44px;
+  border: 4px solid #dbeafe;
+  border-top-color: #4a6cf7;
+  border-radius: 50%;
+  animation: spin 0.75s linear infinite;
 }
 
 @keyframes spin {
-    to {
-        transform: rotate(360deg);
-    }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 .loadingText {
-    font-size: 16px;
-    color: #4a6cf7;
-    font-weight: 500;
+  font-size: 16px;
+  color: #4a6cf7;
+  font-weight: 500;
 }
 
 /* =========================
    ERROR STATE
 ========================= */
 .errorContainer {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 40px 20px;
-    gap: 14px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+  gap: 14px;
 }
 
 .error {
-    color: #ff6b6b;
-    font-size: 16px;
-    font-weight: 500;
-    text-align: center;
+  color: #ff6b6b;
+  font-size: 16px;
+  font-weight: 500;
+  text-align: center;
 }
 
 .retryButton {
-    margin-top: 6px;
-    background: #4a6cf7;
-    color: #fff;
-    font-size: 16px;
-    font-weight: 600;
-    padding: 12px 28px;
-    border-radius: 12px;
-    border: none;
-    cursor: pointer;
-    box-shadow: 0 4px 12px rgba(74, 108, 247, 0.35);
-    font-family: inherit;
-    transition: transform 0.15s ease, box-shadow 0.15s ease;
+  margin-top: 6px;
+  background: #4a6cf7;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 600;
+  padding: 12px 28px;
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(74, 108, 247, 0.35);
+  font-family: inherit;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
 }
 
 .retryButton:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 16px rgba(74, 108, 247, 0.45);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(74, 108, 247, 0.45);
 }
 
 .retryButton:active {
-    transform: scale(0.97);
+  transform: scale(0.97);
 }
 
 /* =========================
@@ -241,8 +241,8 @@
 ========================= */
 @media (max-width: 480px) {
 
-    .container,
-    .loadingContainer {
-        max-width: 100%;
-    }
+  .container,
+  .loadingContainer {
+    max-width: 100%;
+  }
 }
