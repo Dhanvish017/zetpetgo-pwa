@@ -122,7 +122,7 @@ export default function MainTabs() {
   const navigate = useNavigate();
 
   const currentNav = ALL_NAV_ITEMS.find((item) => location.pathname.startsWith(item.path));
-  const pageTitle = currentNav?.label ?? "FarmTrack";
+  const pageTitle = currentNav?.label ?? "ZetPetGo";
 
   return (
     <div className="app-shell">
@@ -167,7 +167,7 @@ export default function MainTabs() {
               <path d="M2 12l10 5 10-5" />
             </svg>
           </div>
-          <span className="sidebar__brand">FarmTrack</span>
+          <span className="sidebar__brand">ZetPetGo</span>
           <button
             className="drawer__close"
             onClick={() => setDrawerOpen(false)}

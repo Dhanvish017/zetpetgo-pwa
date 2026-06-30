@@ -92,8 +92,6 @@
     border-radius: 20px;
     border: 1px solid rgba(255, 255, 255, 0.2);
     gap: 6px;
-    max-width: 360px;
-    margin: 0 auto;
     width: 100%;
 }
 
@@ -127,9 +125,7 @@
 }
 
 .contentContainer {
-    padding: 28px 32px;
-    max-width: 1200px;
-    margin: 0 auto;
+    padding: 24px;
     width: 100%;
     box-sizing: border-box;
 }
@@ -145,7 +141,6 @@
     padding: 4px;
     margin-bottom: 24px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
-    max-width: 360px;
 }
 
 .tabButton {
@@ -344,7 +339,7 @@
     }
 
     .tabContainer {
-        max-width: 100%;
+        width: 100%;
     }
 
     .scoreContainer {

@@ -317,15 +317,13 @@
 ========================= */
 @media (min-width: 769px) {
     .card {
-        max-width: 600px;
-        width: 100%;
-        margin: 24px auto 0 auto;
+        width: auto;
+        margin: 20px 24px 0 24px;
     }
 
     .actions {
-        max-width: 600px;
-        width: 100%;
-        margin: 32px auto 40px auto;
+        width: auto;
+        margin: 32px 24px 40px 24px;
     }
 }
 

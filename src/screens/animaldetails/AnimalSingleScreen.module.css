@@ -9,9 +9,6 @@
     flex-direction: column;
     position: relative;
     box-sizing: border-box;
-    /* bleed to cancel parent .content-area padding */
-    margin: -32px -24px;
-    width: calc(100% + 48px);
 }
 
 /* =========================
@@ -730,8 +727,6 @@
     align-items: center;
     justify-content: center;
     background: #f8fafc;
-    margin: -32px -24px;
-    width: calc(100% + 48px);
     box-sizing: border-box;
 }
 
@@ -745,8 +740,6 @@
     padding: 20px;
     gap: 12px;
     background: #f8fafc;
-    margin: -32px -24px;
-    width: calc(100% + 48px);
     box-sizing: border-box;
 }
 
@@ -797,13 +790,6 @@
    RESPONSIVE — mobile ≤ 768px
 ========================= */
 @media (max-width: 768px) {
-    .container,
-    .loadingContainer,
-    .centeredContainer {
-        margin: -20px -16px;
-        width: calc(100% + 32px);
-    }
-
     .header {
         padding: 36px 20px 20px 20px;
         border-bottom-left-radius: 28px;

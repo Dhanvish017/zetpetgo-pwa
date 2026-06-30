@@ -23,8 +23,6 @@
     flex-direction: column;
     align-items: center;
     position: relative;
-    max-width: 1200px;
-    margin: 0 auto;
     width: 100%;
 }
 
@@ -83,8 +81,6 @@
 .container {
     padding: 16px;
     padding-bottom: 50px;
-    max-width: 1200px;
-    margin: 0 auto;
     width: 100%;
     box-sizing: border-box;
 }
@@ -289,32 +285,23 @@
 }
 
 /* =========================
-   DESKTOP — 2-col grid for cards
+   DESKTOP — 2-col grid for categories
 ========================= */
 @media (min-width: 900px) {
     .container {
-        padding: 24px 32px 50px 32px;
+        padding: 24px 24px 50px 24px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 0 20px;
+        align-items: start;
     }
 
-    /* Each category block stacks normally but cards inside go 2-col */
-    .categoryBlock .card+.card {
-        /* Cards remain stacked per category — keeps UX clear */
+    .container>.pageSubtitle {
+        grid-column: 1 / -1;
     }
 
-    /* Lay categories in 2-column grid on desktop */
-    .container>.categoryBlock {
-        display: inline-block;
-        width: calc(50% - 8px);
-        vertical-align: top;
-    }
-
-    .container>.categoryBlock:nth-child(odd) {
-        margin-right: 16px;
-    }
-
-    .container>p.pageSubtitle {
-        display: block;
-        width: 100%;
+    .categoryBlock {
+        break-inside: avoid;
     }
 }
 
