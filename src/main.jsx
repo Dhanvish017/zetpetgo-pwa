@@ -4,6 +4,19 @@ import { BrowserRouter } from "react-router-dom";
 import axios from "axios";
 import App from "./App";
 import { registerSW } from 'virtual:pwa-register'
+import { supabase } from "./lib/supabase";
+
+// ✅ Keep token fresh automatically
+supabase.auth.onAuthStateChange((event, session) => {
+  if (session) {
+    // Save/refresh token whenever session changes
+    localStorage.setItem('token', session.access_token)
+  }
+  if (event === 'SIGNED_OUT') {
+    localStorage.removeItem('token')
+    window.location.href = '/login'
+  }
+})
 
 axios.interceptors.response.use(
   (res) => res,
@@ -16,7 +29,6 @@ axios.interceptors.response.use(
   }
 );
 
-// Register service worker with auto-update
 const updateSW = registerSW({
   onNeedRefresh() {
     if (confirm('New version available. Reload to update?')) {

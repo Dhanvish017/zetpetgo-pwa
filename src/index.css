@@ -6,6 +6,28 @@
   --sab: env(safe-area-inset-bottom);
   --sal: env(safe-area-inset-left);
   --sar: env(safe-area-inset-right);
+
+  /* ── ZetPetGo Brand Palette ── */
+  --color-primary:           #1D2F6F;
+  --color-primary-dark:      #152558;
+  --color-primary-mid:       #2E4390;
+  --color-primary-light:     rgba(29, 47, 111, 0.08);
+
+  --color-secondary:         #8390FA;
+  --color-secondary-dark:    #6B77E8;
+  --color-secondary-light:   rgba(131, 144, 250, 0.12);
+  --color-secondary-border:  rgba(131, 144, 250, 0.25);
+  --color-secondary-track:   rgba(131, 144, 250, 0.2);
+
+  --color-accent:            #FAC748;
+  --color-accent-light:      rgba(250, 199, 72, 0.15);
+
+  --color-bg-page:           #F4F6FA;
+  --color-bg-card:           #FFFFFF;
+  --color-border:            rgba(131, 144, 250, 0.2);
+
+  --color-shadow-primary:    rgba(29, 47, 111, 0.25);
+  --color-shadow-secondary:  rgba(131, 144, 250, 0.2);
 }
 
 body {
@@ -14,12 +36,9 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   -webkit-font-smoothing: antialiased;
   overscroll-behavior: none;
-  /* prevents pull-to-refresh on mobile */
   -webkit-tap-highlight-color: transparent;
-  /* removes tap flash on mobile */
 }
 
-/* Prevent text size adjustment on orientation change */
 html {
   -webkit-text-size-adjust: 100%;
 }

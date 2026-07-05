@@ -4,7 +4,7 @@
 .container {
     min-height: 100vh;
     width: 100%;
-    background-color: #f8fafc;
+    background-color: #F8FAFC;
     display: flex;
     flex-direction: column;
     position: relative;
@@ -16,11 +16,11 @@
 ========================= */
 .profileHeader {
     padding: 48px 24px;
-    background: linear-gradient(135deg, #4a6cf7, #2541b2);
+    background: linear-gradient(135deg, #1D2F6F, #152558);
     border-bottom-left-radius: 32px;
     border-bottom-right-radius: 32px;
     position: relative;
-    box-shadow: 0 8px 32px rgba(37, 65, 178, 0.15);
+    box-shadow: 0 8px 32px rgba(29, 47, 111, 0.2);
     flex-shrink: 0;
     display: flex;
     flex-direction: column;
@@ -125,7 +125,7 @@
     align-items: center;
     justify-content: center;
     border: 1px solid rgba(0, 0, 0, 0.04);
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+    box-shadow: 0 4px 16px rgba(29, 47, 111, 0.06);
     cursor: pointer;
     font-family: inherit;
     transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.2s ease;
@@ -136,7 +136,7 @@
 
 .animalCard:hover {
     transform: translateY(-4px);
-    box-shadow: 0 12px 28px rgba(74, 108, 247, 0.12);
+    box-shadow: 0 12px 28px rgba(29, 47, 111, 0.14);
 }
 
 .animalCard:active {
@@ -175,8 +175,6 @@
 
 /* =========================
    FOOTER BUTTONS
-   Desktop: static flow at bottom of page
-   Mobile:  fixed sticky bar
 ========================= */
 .buttonContainer {
     display: flex;
@@ -190,7 +188,6 @@
     margin-top: auto;
 }
 
-/* shared button base */
 .addButton,
 .viewReportButton {
     flex: 1;
@@ -208,15 +205,15 @@
 }
 
 .addButton {
-    background: #4a6cf7;
+    background: #1D2F6F;
     border: none;
-    box-shadow: 0 6px 18px rgba(74, 108, 247, 0.25);
+    box-shadow: 0 6px 18px rgba(29, 47, 111, 0.28);
 }
 
 .addButton:hover {
-    background: #3b5bdb;
+    background: #2E4390;
     transform: translateY(-2px);
-    box-shadow: 0 10px 24px rgba(74, 108, 247, 0.35);
+    box-shadow: 0 10px 24px rgba(29, 47, 111, 0.38);
 }
 
 .addButton:active {
@@ -232,14 +229,14 @@
 
 .viewReportButton {
     background: #fff;
-    border: 1.5px solid #4a6cf7;
-    box-shadow: 0 4px 12px rgba(74, 108, 247, 0.08);
+    border: 1.5px solid #8390FA;
+    box-shadow: 0 4px 12px rgba(131, 144, 250, 0.1);
 }
 
 .viewReportButton:hover {
-    background: rgba(74, 108, 247, 0.04);
+    background: rgba(131, 144, 250, 0.05);
     transform: translateY(-2px);
-    box-shadow: 0 8px 20px rgba(74, 108, 247, 0.15);
+    box-shadow: 0 8px 20px rgba(131, 144, 250, 0.18);
 }
 
 .viewReportButton:active {
@@ -247,7 +244,7 @@
 }
 
 .viewReportText {
-    color: #4a6cf7;
+    color: #1D2F6F;
     font-size: 15px;
     font-weight: 600;
     letter-spacing: 0.3px;
@@ -268,20 +265,18 @@
 .spinner {
     width: 44px;
     height: 44px;
-    border: 4px solid #dbeafe;
-    border-top-color: #4a6cf7;
+    border: 4px solid rgba(131, 144, 250, 0.2);
+    border-top-color: #1D2F6F;
     border-radius: 50%;
     animation: spin 0.75s linear infinite;
 }
 
 @keyframes spin {
-    to {
-        transform: rotate(360deg);
-    }
+    to { transform: rotate(360deg); }
 }
 
 /* =========================
-   TABLET  ≤ 768px
+   TABLET
 ========================= */
 @media (max-width: 768px) {
     .profileHeader {
@@ -301,7 +296,6 @@
         height: 36px;
     }
 
-    /* extra bottom room so cards don't hide behind sticky bar + bottom tabs */
     .content {
         padding: 24px 16px 180px 16px;
     }
@@ -327,7 +321,6 @@
         font-size: 14px;
     }
 
-    /* STICKY BAR — mobile only, sits above the bottom tab bar */
     .buttonContainer {
         position: fixed;
         bottom: var(--bottom-tabs-height, 64px);
@@ -343,7 +336,6 @@
         z-index: 200;
     }
 
-    /* equal width, fill the bar */
     .addButton,
     .viewReportButton {
         flex: 1;
@@ -353,7 +345,7 @@
 }
 
 /* =========================
-   MOBILE  ≤ 480px
+   MOBILE
 ========================= */
 @media (max-width: 480px) {
     .buttonContainer {

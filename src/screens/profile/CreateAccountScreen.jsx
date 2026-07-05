@@ -40,7 +40,7 @@ const CreateAccountScreen = () => {
     const [form, setForm] = useState({
         clinicName: "",
         doctorName: "",
-        email: "",
+        phoneNumber: "",
         permanentAddress: "",
     });
     const [loading, setLoading] = useState(false);
@@ -48,12 +48,13 @@ const CreateAccountScreen = () => {
 
     const handleTypeSelect = (type) => {
         setSelectedType(type);
-        setForm({ clinicName: "", doctorName: "", email: "", permanentAddress: "" });
+        setForm({ clinicName: "", doctorName: "", phoneNumber: "", permanentAddress: "" });
         setErrors({});
     };
 
     const handleInputChange = (field, value) => {
-        setForm(prev => ({ ...prev, [field]: value }));
+        const cleaned = field === "phoneNumber" ? value.replace(/\D/g, "").slice(0, 10) : value;
+        setForm(prev => ({ ...prev, [field]: cleaned }));
         if (errors[field]) setErrors(prev => ({ ...prev, [field]: "" }));
     };
 
@@ -63,10 +64,10 @@ const CreateAccountScreen = () => {
 
         if (selectedType === "clinic" && !form.clinicName.trim()) newErrors.clinicName = "Clinic name is required";
         if (!form.doctorName.trim()) newErrors.doctorName = "Doctor name is required";
-        if (!form.email.trim()) {
-            newErrors.email = "Email is required";
-        } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) {
-            newErrors.email = "Please enter a valid email address";
+        if (!form.phoneNumber.trim()) {
+            newErrors.phoneNumber = "Phone number is required";
+        } else if (!/^\d{10}$/.test(form.phoneNumber.trim())) {
+            newErrors.phoneNumber = "Please enter a valid 10-digit phone number";
         }
         if (!form.permanentAddress.trim()) newErrors.permanentAddress = "Address is required";
 
@@ -80,8 +81,8 @@ const CreateAccountScreen = () => {
         try {
             const token = localStorage.getItem("token");
             const profileData = selectedType === "clinic"
-                ? { clinicName: form.clinicName, name: form.doctorName, email: form.email, address: form.permanentAddress, accountType: "clinic" }
-                : { name: form.doctorName, email: form.email, address: form.permanentAddress, accountType: "individual" };
+                ? { clinicName: form.clinicName, name: form.doctorName, phone: form.phoneNumber, address: form.permanentAddress, accountType: "clinic" }
+                : { name: form.doctorName, phone: form.phoneNumber, address: form.permanentAddress, accountType: "individual" };
 
             await axios.put("https://vetcare-1.onrender.com/api/profile", profileData, {
                 headers: { Authorization: `Bearer ${token}` },
@@ -99,13 +100,13 @@ const CreateAccountScreen = () => {
     const clinicFields = [
         { key: "clinicName", label: "Clinic Name", placeholder: "Enter clinic name", type: "text" },
         { key: "doctorName", label: "Doctor Name", placeholder: "Enter doctor name", type: "text" },
-        { key: "email", label: "Email", placeholder: "Enter email address", type: "email" },
+        { key: "phoneNumber", label: "Phone Number", placeholder: "Enter 10-digit phone number", type: "tel" },
         { key: "permanentAddress", label: "Permanent Address", placeholder: "Enter permanent address", type: "text" },
     ];
 
     const individualFields = [
         { key: "doctorName", label: "Doctor Name", placeholder: "Enter doctor name", type: "text" },
-        { key: "email", label: "Email", placeholder: "Enter email address", type: "email" },
+        { key: "phoneNumber", label: "Phone Number", placeholder: "Enter 10-digit phone number", type: "tel" },
         { key: "permanentAddress", label: "Address", placeholder: "Enter address", type: "text" },
     ];
 
@@ -162,7 +163,9 @@ const CreateAccountScreen = () => {
                                     placeholder={field.placeholder}
                                     value={form[field.key]}
                                     onChange={(e) => handleInputChange(field.key, e.target.value)}
-                                    autoCapitalize={field.type === "email" ? "none" : "words"}
+                                    autoCapitalize={field.type === "tel" ? "none" : "words"}
+                                    inputMode={field.type === "tel" ? "numeric" : undefined}
+                                    maxLength={field.type === "tel" ? 10 : undefined}
                                 />
                                 {errors[field.key] && (
                                     <span className={styles.fieldError}>{errors[field.key]}</span>

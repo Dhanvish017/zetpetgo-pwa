@@ -1,10 +1,10 @@
 /* =========================
-   CONTAINER — fills full page
+   CONTAINER
 ========================= */
 .container {
     min-height: 100vh;
     width: 100%;
-    background-color: #f8fafc;
+    background-color: #F8FAFC;
     display: flex;
     flex-direction: column;
 }
@@ -13,9 +13,9 @@
    HEADER
 ========================= */
 .header {
-    background: linear-gradient(135deg, #4a6cf7, #2541b2);
+    background: linear-gradient(135deg, #1D2F6F, #152558);
     padding: 48px 24px 18px 24px;
-    box-shadow: 0 4px 16px rgba(37, 65, 178, 0.3);
+    box-shadow: 0 4px 16px rgba(29, 47, 111, 0.3);
     flex-shrink: 0;
 }
 
@@ -70,7 +70,7 @@
     padding: 10px 8px;
     border-radius: 25px;
     border: none;
-    background: #f1f5f9;
+    background: #edeef6;
     cursor: pointer;
     font-family: inherit;
     transition: background 0.2s ease;
@@ -80,7 +80,7 @@
 }
 
 .tabBtnActive {
-    background: #4a6cf7;
+    background: #1D2F6F;
 }
 
 .tabText {
@@ -95,7 +95,7 @@
 }
 
 /* =========================
-   SUB-TABS (Notification tab)
+   SUB-TABS
 ========================= */
 .subTabContainer {
     display: flex;
@@ -104,7 +104,7 @@
     background: #fff;
     border-radius: 12px;
     padding: 4px;
-    border: 1px solid #e0e7ff;
+    border: 1px solid rgba(131, 144, 250, 0.2);
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
     width: calc(100% - 48px);
     box-sizing: border-box;
@@ -127,7 +127,7 @@
 }
 
 .subTabBtnActive {
-    background: #eef2ff;
+    background: rgba(131, 144, 250, 0.1);
 }
 
 .subTabText {
@@ -137,7 +137,7 @@
 }
 
 .subTabTextActiveVaccine {
-    color: #4a6cf7;
+    color: #1D2F6F;
     font-weight: 700;
 }
 
@@ -200,13 +200,13 @@
     padding: 16px;
     margin-bottom: 8px;
     align-items: center;
-    border: 1px solid #e0e7ff;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    border: 1px solid rgba(131, 144, 250, 0.15);
+    box-shadow: 0 2px 8px rgba(29, 47, 111, 0.06);
     transition: opacity 0.3s ease, box-shadow 0.15s ease;
 }
 
 .card:hover {
-    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.09);
+    box-shadow: 0 4px 14px rgba(29, 47, 111, 0.1);
 }
 
 .cardCompleted {
@@ -257,7 +257,7 @@
 .specialLabel {
     display: block;
     font-size: 12px;
-    color: #f59e0b;
+    color: #FAC748;
     font-weight: 600;
     margin-top: 4px;
 }
@@ -335,7 +335,7 @@
     gap: 5px;
     padding: 9px 10px;
     border-radius: 20px;
-    border: 1.5px solid #e0e7ff;
+    border: 1.5px solid rgba(131, 144, 250, 0.2);
     background: #fff;
     cursor: pointer;
     font-family: inherit;
@@ -344,13 +344,13 @@
 }
 
 .specialTabBtnNewOwner {
-    background: #8b5cf6;
-    border-color: #8b5cf6;
+    background: #8390FA;
+    border-color: #8390FA;
 }
 
 .specialTabBtnBirthday {
-    background: #f59e0b;
-    border-color: #f59e0b;
+    background: #FAC748;
+    border-color: #FAC748;
 }
 
 .specialTabBtnThree {
@@ -410,20 +410,18 @@
 .spinner {
     width: 40px;
     height: 40px;
-    border: 4px solid #dbeafe;
-    border-top-color: #4a6cf7;
+    border: 4px solid rgba(131, 144, 250, 0.2);
+    border-top-color: #1D2F6F;
     border-radius: 50%;
     animation: spin 0.75s linear infinite;
 }
 
 @keyframes spin {
-    to {
-        transform: rotate(360deg);
-    }
+    to { transform: rotate(360deg); }
 }
 
 /* =========================
-   DESKTOP — wider layout, 2-col cards
+   DESKTOP — 2-col cards
 ========================= */
 @media (min-width: 900px) {
     .contentInner {
@@ -433,7 +431,6 @@
         align-items: start;
     }
 
-    /* Section containers span 1 col each; empty/loader spans both */
     .sectionContainer {
         break-inside: avoid;
     }

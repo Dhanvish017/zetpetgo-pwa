@@ -12,7 +12,7 @@ export default defineConfig({
         name: 'ZetPetGo',
         short_name: 'ZetPetGo',
         description: 'Vet care management app',
-        theme_color: '#4a6cf7',
+        theme_color: '#1D2F6F',
         background_color: '#ffffff',
         display: 'standalone',
         orientation: 'portrait',

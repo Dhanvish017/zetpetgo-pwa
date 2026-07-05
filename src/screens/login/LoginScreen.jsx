@@ -1,217 +1,144 @@
-import React, { useState, useRef, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import { IoCall } from "react-icons/io5";
-import axios from "axios";
+import React, { useState } from "react";
+import { useNavigate, Link } from "react-router-dom";
+import { supabase } from "../../lib/supabase";
+import { completeLogin } from "../../lib/authFlow";
 import "./LoginScreen.css";
+
+const GoogleIcon = () => (
+  <svg width="22" height="22" viewBox="0 0 48 48" aria-hidden="true">
+    <path
+      fill="#FFC107"
+      d="M43.611 20.083H42V20H24v8h11.303c-1.649 4.657-6.08 8-11.303 8-6.627 0-12-5.373-12-12s5.373-12 12-12c3.059 0 5.842 1.154 7.961 3.039l5.657-5.657C34.046 6.053 29.268 4 24 4 12.955 4 4 12.955 4 24s8.955 20 20 20 20-8.955 20-20c0-1.341-.138-2.65-.389-3.917z"
+    />
+    <path
+      fill="#FF3D00"
+      d="M6.306 14.691l6.571 4.819C14.655 15.108 18.961 12 24 12c3.059 0 5.842 1.154 7.961 3.039l5.657-5.657C34.046 6.053 29.268 4 24 4 16.318 4 9.656 8.337 6.306 14.691z"
+    />
+    <path
+      fill="#4CAF50"
+      d="M24 44c5.166 0 9.86-1.977 13.409-5.192l-6.19-5.238C29.211 35.091 26.715 36 24 36c-5.202 0-9.619-3.317-11.283-7.946l-6.522 5.025C9.505 39.556 16.227 44 24 44z"
+    />
+    <path
+      fill="#1976D2"
+      d="M43.611 20.083H42V20H24v8h11.303a12.04 12.04 0 0 1-4.087 5.571l.003-.002 6.19 5.238C36.971 39.205 44 34 44 24c0-1.341-.138-2.65-.389-3.917z"
+    />
+  </svg>
+);
 
 const LoginScreen = () => {
   const navigate = useNavigate();
 
-  const [otpSent, setOtpSent] = useState(false);
-  const [phoneNumber, setPhoneNumber] = useState("");
-  const [otp, setOtp] = useState(["", "", "", ""]);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
-  const [resendTimer, setResendTimer] = useState(0);
+  const [googleLoading, setGoogleLoading] = useState(false);
 
-  const otpRefs = useRef([]);
-
-  const countryCode = "+91";
-
-  useEffect(() => {
-    if (resendTimer > 0) {
-      const timer = setTimeout(
-        () => setResendTimer(resendTimer - 1),
-        1000
-      );
-      return () => clearTimeout(timer);
-    }
-  }, [resendTimer]);
-
-  const handlePhoneChange = (e) => {
-    const cleaned = e.target.value.replace(/\D/g, "");
-    setPhoneNumber(cleaned);
-
-    if (error && cleaned.length >= 10) {
-      setError("");
-    }
-  };
-
-  const sendOTP = async () => {
-    if (phoneNumber.length !== 10) {
-      setError("Please enter a valid 10-digit mobile number");
-      return;
-    }
-
-    setLoading(true);
+  const signInWithEmail = async (e) => {
+    e.preventDefault();
     setError("");
 
-    try {
-      await axios.post(
-        "https://vetcare-1.onrender.com/send-otp",
-        {
-          phone: `${countryCode}${phoneNumber}`,
-        }
-      );
-
-      setOtpSent(true);
-      setResendTimer(30);
-
-      setTimeout(() => {
-        otpRefs.current[0]?.focus();
-      }, 300);
-    } catch (err) {
-      setError(
-        err.response?.data?.message ||
-        "Failed to send OTP"
-      );
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const handleOtpChange = (value, index) => {
-    const digit = value.replace(/\D/g, "");
-
-    const newOtp = [...otp];
-    newOtp[index] = digit;
-    setOtp(newOtp);
-
-    if (digit && index < 3) {
-      otpRefs.current[index + 1]?.focus();
-    }
-  };
-
-  const verifyOTP = async () => {
-    const otpCode = otp.join("");
-
-    if (otpCode.length !== 4) {
-      setError("Please enter the complete 4-digit OTP");
+    if (!email.trim() || !password) {
+      setError("Please enter your email and password");
       return;
     }
 
     setLoading(true);
 
-    try {
-      const res = await axios.post(
-        "https://vetcare-1.onrender.com/verify-otp",
-        {
-          phone: `${countryCode}${phoneNumber}`,
-          otp: otpCode,
-        }
-      );
+    const { error: signInError } = await supabase.auth.signInWithPassword({
+      email: email.trim(),
+      password,
+    });
 
-      const { token, isProfileComplete } = res.data;
-
-      localStorage.setItem("token", token);
-
-      navigate(
-        isProfileComplete
-          ? "/dashboard"
-          : "/create-account"
-      );
-    } catch (err) {
-      setError(
-        err.response?.data?.message ||
-        "OTP verification failed"
-      );
-    } finally {
+    if (signInError) {
+      setError(signInError.message);
       setLoading(false);
+      return;
+    }
+
+    await completeLogin(navigate);
+    setLoading(false);
+  };
+
+  const signInWithGoogle = async () => {
+    setGoogleLoading(true);
+
+    const { error: oauthError } = await supabase.auth.signInWithOAuth({
+      provider: "google",
+      options: {
+        redirectTo: `${window.location.origin}/auth/callback`,
+      },
+    });
+
+    if (oauthError) {
+      console.error(oauthError.message);
+      setError(oauthError.message);
+      setGoogleLoading(false);
     }
   };
 
   return (
     <div className="login-container">
-
       <div className="login-card">
+        <img
+          className="login-logo"
+          src="/web-app-manifest-512x512.png"
+          alt="ZetPetGo"
+        />
 
-        <div className="header">
-          <IoCall size={60} />
-          <h1>ZetPetGo</h1>
-          <p>Secure access with OTP verification</p>
-        </div>
+        <h1 className="login-title">Welcome Back</h1>
+        <p className="login-subtitle">Sign in to continue</p>
 
-        <div className="input-group">
-          <label>Mobile Number</label>
-
-          <div className="phone-row">
-            <div className="country-code">
-              {countryCode}
-            </div>
-
+        <form className="login-form" onSubmit={signInWithEmail}>
+          <div className="input-group">
+            <label htmlFor="email">Email</label>
             <input
-              type="text"
-              maxLength="10"
-              value={phoneNumber}
-              onChange={handlePhoneChange}
-              placeholder="Enter 10-digit number"
+              id="email"
+              type="email"
+              placeholder="you@example.com"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              autoComplete="email"
             />
           </div>
+
+          <div className="input-group">
+            <label htmlFor="password">Password</label>
+            <input
+              id="password"
+              type="password"
+              placeholder="Enter your password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              autoComplete="current-password"
+            />
+          </div>
+
+          {error && <div className="error-box">{error}</div>}
+
+          <button className="primary-btn" type="submit" disabled={loading}>
+            {loading ? "Signing in..." : "Sign In"}
+          </button>
+        </form>
+
+        <div className="divider">
+          <span>OR</span>
         </div>
 
-        {otpSent && (
-          <div className="otp-section">
-
-            <label>Enter OTP</label>
-
-            <p className="otp-hint">
-              We've sent a 4-digit code to
-              {" "}
-              {countryCode} {phoneNumber}
-            </p>
-
-            <div className="otp-container">
-
-              {otp.map((digit, index) => (
-                <input
-                  key={index}
-                  ref={(el) => (otpRefs.current[index] = el)}
-                  className="otp-input"
-                  maxLength="1"
-                  value={digit}
-                  onChange={(e) =>
-                    handleOtpChange(
-                      e.target.value,
-                      index
-                    )
-                  }
-                />
-              ))}
-
-            </div>
-
-            <button
-              className="link-btn"
-              disabled={resendTimer > 0}
-              onClick={sendOTP}
-            >
-              {resendTimer > 0
-                ? `Resend OTP in ${resendTimer}s`
-                : "Resend OTP"}
-            </button>
-
-          </div>
-        )}
-
-        {error && (
-          <div className="error-box">
-            {error}
-          </div>
-        )}
-
         <button
-          className="primary-btn"
-          onClick={otpSent ? verifyOTP : sendOTP}
+          className="google-btn"
+          onClick={signInWithGoogle}
+          disabled={googleLoading}
         >
-          {loading
-            ? "Loading..."
-            : otpSent
-              ? "Verify OTP"
-              : "Send OTP"}
+          <GoogleIcon />
+          <span>{googleLoading ? "Redirecting..." : "Continue with Google"}</span>
         </button>
 
+        <p className="signup-hint">
+          Don't have an account?{" "}
+          <Link to="/signup">Create Account</Link>
+        </p>
       </div>
-
     </div>
   );
 };

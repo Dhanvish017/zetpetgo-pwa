@@ -4,7 +4,7 @@
 .container {
   width: 100%;
   min-height: 100%;
-  background-color: #f8fafc;
+  background-color: #F8FAFC;
   display: flex;
   flex-direction: column;
 }
@@ -14,13 +14,13 @@
 ========================= */
 .header {
   height: 140px;
-  background: linear-gradient(135deg, #4a6cf7, #2541b2);
+  background: linear-gradient(135deg, #1D2F6F, #152558);
   border-bottom-left-radius: 30px;
   border-bottom-right-radius: 30px;
   display: flex;
   align-items: flex-end;
   padding-bottom: 24px;
-  box-shadow: 0 4px 16px rgba(74, 108, 247, 0.3);
+  box-shadow: 0 4px 16px rgba(29, 47, 111, 0.3);
   flex-shrink: 0;
   margin-bottom: 24px;
 }
@@ -93,7 +93,7 @@
 }
 
 .input:focus {
-  border-color: #4a6cf7;
+  border-color: #8390FA;
 }
 
 .input::placeholder {
@@ -102,7 +102,7 @@
 
 .inputDisabled {
   color: #64748b;
-  background: #f8fafc;
+  background: #F8FAFC;
   cursor: default;
 }
 
@@ -136,7 +136,7 @@
   flex: 1;
   padding: 16px;
   border-radius: 12px;
-  background: #f1f5f9;
+  background: #edeef6;
   border: 2px solid transparent;
   font-size: 15px;
   font-weight: 600;
@@ -148,7 +148,7 @@
 }
 
 .speciesBtn:hover {
-  background: #e8edf5;
+  background: #e0e4f0;
 }
 
 .speciesBtn:active {
@@ -156,8 +156,8 @@
 }
 
 .active {
-  background: #e0f2fe;
-  border-color: #38bdf8;
+  background: rgba(131, 144, 250, 0.12);
+  border-color: #8390FA;
 }
 
 /* =========================
@@ -187,16 +187,16 @@
 }
 
 .dropdownTrigger:hover {
-  border-color: #4a6cf7;
+  border-color: #8390FA;
 }
 
 .dropdownTriggerOpen {
-  border-color: #4a6cf7;
-  background: #f8faff;
+  border-color: #8390FA;
+  background: #fafbff;
 }
 
 .dropdownDisabled {
-  background: #f8fafc;
+  background: #F8FAFC;
   cursor: not-allowed;
   color: #999;
 }
@@ -224,7 +224,7 @@
   border: 1px solid #e2e8f0;
   border-radius: 12px;
   z-index: 1000;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 8px 24px rgba(29, 47, 111, 0.1);
   overflow: hidden;
 }
 
@@ -274,8 +274,8 @@
 }
 
 .dropdownItemActive {
-  background: #eff6ff;
-  color: #4a6cf7;
+  background: rgba(131, 144, 250, 0.1);
+  color: #1D2F6F;
   font-weight: 600;
 }
 
@@ -291,7 +291,7 @@
 ========================= */
 .saveBtn {
   width: 100%;
-  background: #4a6cf7;
+  background: #1D2F6F;
   border-radius: 28px;
   padding: 16px;
   font-size: 16px;
@@ -303,13 +303,13 @@
   font-family: inherit;
   margin-top: 8px;
   margin-bottom: 16px;
-  box-shadow: 0 6px 18px rgba(74, 108, 247, 0.38);
+  box-shadow: 0 6px 18px rgba(29, 47, 111, 0.38);
   transition: transform 0.15s ease, box-shadow 0.15s ease, opacity 0.15s ease;
 }
 
 .saveBtn:hover {
   transform: translateY(-2px);
-  box-shadow: 0 10px 24px rgba(74, 108, 247, 0.48);
+  box-shadow: 0 10px 24px rgba(29, 47, 111, 0.48);
 }
 
 .saveBtn:active {

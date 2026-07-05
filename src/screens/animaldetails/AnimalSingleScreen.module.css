@@ -4,7 +4,7 @@
 .container {
     min-height: 100vh;
     width: 100%;
-    background-color: #f8fafc;
+    background-color: #F8FAFC;
     display: flex;
     flex-direction: column;
     position: relative;
@@ -15,11 +15,11 @@
    HEADER
 ========================= */
 .header {
-    background: linear-gradient(135deg, #4a6cf7, #2f4ed8);
+    background: linear-gradient(135deg, #1D2F6F, #2E4390);
     padding: 40px 32px 24px 32px;
     border-bottom-left-radius: 36px;
     border-bottom-right-radius: 36px;
-    box-shadow: 0 8px 24px rgba(47, 78, 216, 0.3);
+    box-shadow: 0 8px 24px rgba(29, 47, 111, 0.3);
     flex-shrink: 0;
     width: 100%;
     box-sizing: border-box;
@@ -160,7 +160,7 @@
     flex-direction: row;
     align-items: center;
     gap: 10px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.07);
+    box-shadow: 0 2px 10px rgba(29, 47, 111, 0.07);
 }
 
 .statIconContainer {
@@ -202,7 +202,7 @@
     background: #fff;
     border-radius: 12px;
     margin-bottom: 14px;
-    border: 1px solid #e0e7ff;
+    border: 1px solid rgba(131, 144, 250, 0.2);
     overflow: hidden;
 }
 
@@ -223,8 +223,8 @@
 }
 
 .tabBtnActive {
-    border-bottom-color: #4a6cf7;
-    background: #f5f7ff;
+    border-bottom-color: #8390FA;
+    background: rgba(131, 144, 250, 0.06);
 }
 
 .tabText {
@@ -235,7 +235,7 @@
 }
 
 .tabTextActive {
-    color: #4a6cf7;
+    color: #1D2F6F;
 }
 
 /* =========================
@@ -245,8 +245,8 @@
     background: #fff;
     border-radius: 16px;
     padding: 12px;
-    border: 1px solid #e0e7ff;
-    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+    border: 1px solid rgba(131, 144, 250, 0.15);
+    box-shadow: 0 2px 12px rgba(29, 47, 111, 0.06);
     margin-bottom: 8px;
     overflow: hidden;
 }
@@ -262,7 +262,7 @@
 }
 
 .tableHeader {
-    background: #4a6cf7;
+    background: #1D2F6F;
 }
 
 .tableHeaderGreen {
@@ -285,7 +285,7 @@
 }
 
 .tableRow {
-    border-bottom: 1px solid #e0e7ff;
+    border-bottom: 1px solid rgba(131, 144, 250, 0.15);
 }
 
 .rowEven {
@@ -293,7 +293,7 @@
 }
 
 .rowOdd {
-    background: #f8faff;
+    background: #F8FAFC;
 }
 
 .rowCompleted {
@@ -324,7 +324,7 @@
     width: 22px;
     height: 22px;
     border-radius: 6px;
-    border: 2px solid #4a6cf7;
+    border: 2px solid #8390FA;
     background: #fff;
     display: inline-flex;
     align-items: center;
@@ -336,8 +336,8 @@
 }
 
 .checkboxChecked {
-    background: #4a6cf7;
-    border-color: #4a6cf7;
+    background: #8390FA;
+    border-color: #8390FA;
 }
 
 .checkboxGreen {
@@ -353,12 +353,12 @@
    STAGE PILL
 ========================= */
 .stagePill {
-    background: #eef2ff;
+    background: rgba(131, 144, 250, 0.12);
     border-radius: 8px;
     padding: 3px 8px;
     font-size: 11px;
     font-weight: 700;
-    color: #4a6cf7;
+    color: #1D2F6F;
     white-space: nowrap;
     display: inline-block;
 }
@@ -367,12 +367,12 @@
    DAY BADGE
 ========================= */
 .dayBadge {
-    background: #c7d2fe;
+    background: rgba(131, 144, 250, 0.2);
     border-radius: 8px;
     padding: 3px 7px;
     font-size: 10px;
     font-weight: 700;
-    color: #3730a3;
+    color: #1D2F6F;
     white-space: nowrap;
     display: inline-block;
 }
@@ -416,7 +416,7 @@
     width: 30px;
     height: 30px;
     border-radius: 8px;
-    background: #eef2ff;
+    background: rgba(131, 144, 250, 0.12);
     border: none;
     display: inline-flex;
     align-items: center;
@@ -427,7 +427,7 @@
 }
 
 .editBtn:hover {
-    background: #e0e7ff;
+    background: rgba(131, 144, 250, 0.22);
 }
 
 .editBtnGreen {
@@ -463,12 +463,12 @@
 
 .emptySubText {
     font-size: 12px;
-    color: #c7d2fe;
+    color: rgba(131, 144, 250, 0.5);
     text-align: center;
 }
 
 .emptySubTextLink {
-    color: #4a6cf7;
+    color: #8390FA;
     font-weight: 600;
 }
 
@@ -484,25 +484,25 @@
     flex-direction: row;
     align-items: center;
     gap: 6px;
-    border: 1.5px dashed #4a6cf7;
+    border: 1.5px dashed #8390FA;
     border-radius: 20px;
     padding: 8px 14px;
     background: #fff;
     cursor: pointer;
     font-family: inherit;
     z-index: 10;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 12px rgba(29, 47, 111, 0.1);
     transition: box-shadow 0.15s ease;
 }
 
 .addRowBtn:hover {
-    box-shadow: 0 6px 18px rgba(74, 108, 247, 0.2);
+    box-shadow: 0 6px 18px rgba(131, 144, 250, 0.2);
 }
 
 .addRowBtnText {
     font-size: 13px;
     font-weight: 700;
-    color: #4a6cf7;
+    color: #1D2F6F;
 }
 
 /* =========================
@@ -537,7 +537,7 @@
     align-items: center;
     gap: 10px;
     padding: 20px;
-    border-bottom: 1px solid #e0e7ff;
+    border-bottom: 1px solid rgba(131, 144, 250, 0.15);
     flex-shrink: 0;
 }
 
@@ -576,7 +576,7 @@
 
 .fieldHint {
     font-size: 11px;
-    color: #f59e0b;
+    color: #FAC748;
     margin-top: 6px;
     line-height: 1.5;
     display: block;
@@ -584,12 +584,12 @@
 
 .modalInput {
     width: 100%;
-    border: 1px solid #c7d2fe;
+    border: 1px solid rgba(131, 144, 250, 0.3);
     border-radius: 10px;
     padding: 10px 14px;
     font-size: 14px;
     color: #1e293b;
-    background: #f8faff;
+    background: #F8FAFC;
     font-family: inherit;
     outline: none;
     box-sizing: border-box;
@@ -597,7 +597,7 @@
 }
 
 .modalInput:focus {
-    border-color: #4a6cf7;
+    border-color: #8390FA;
 }
 
 .modalDropdown {
@@ -606,17 +606,17 @@
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    border: 1px solid #c7d2fe;
+    border: 1px solid rgba(131, 144, 250, 0.3);
     border-radius: 10px;
     padding: 12px 14px;
-    background: #f8faff;
+    background: #F8FAFC;
     cursor: pointer;
     font-family: inherit;
     transition: border-color 0.15s ease;
 }
 
 .modalDropdown:hover {
-    border-color: #4a6cf7;
+    border-color: #8390FA;
 }
 
 .modalDropdownValue {
@@ -635,7 +635,7 @@
     align-items: center;
     justify-content: center;
     gap: 8px;
-    background: #4a6cf7;
+    background: #1D2F6F;
     margin: 16px 20px 20px 20px;
     border-radius: 12px;
     padding: 14px;
@@ -676,7 +676,7 @@
     max-width: 320px;
     max-height: 50vh;
     overflow: hidden;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.18);
+    box-shadow: 0 8px 32px rgba(29, 47, 111, 0.18);
     display: flex;
     flex-direction: column;
 }
@@ -685,9 +685,9 @@
     display: block;
     font-size: 15px;
     font-weight: 700;
-    color: #3730a3;
+    color: #1D2F6F;
     padding: 14px 16px;
-    border-bottom: 1px solid #e0e7ff;
+    border-bottom: 1px solid rgba(131, 144, 250, 0.15);
     flex-shrink: 0;
 }
 
@@ -709,7 +709,7 @@
 }
 
 .pickerItem:hover {
-    background: #f5f7ff;
+    background: rgba(131, 144, 250, 0.05);
 }
 
 .pickerItemText {
@@ -726,7 +726,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background: #f8fafc;
+    background: #F8FAFC;
     box-sizing: border-box;
 }
 
@@ -739,23 +739,21 @@
     justify-content: center;
     padding: 20px;
     gap: 12px;
-    background: #f8fafc;
+    background: #F8FAFC;
     box-sizing: border-box;
 }
 
 .spinner {
     width: 44px;
     height: 44px;
-    border: 4px solid #dbeafe;
-    border-top-color: #4a6cf7;
+    border: 4px solid rgba(131, 144, 250, 0.2);
+    border-top-color: #1D2F6F;
     border-radius: 50%;
     animation: spin 0.75s linear infinite;
 }
 
 @keyframes spin {
-    to {
-        transform: rotate(360deg);
-    }
+    to { transform: rotate(360deg); }
 }
 
 .errorText {
@@ -765,7 +763,7 @@
 }
 
 .backButtonSimple {
-    background: #4a6cf7;
+    background: #1D2F6F;
     color: #fff;
     font-size: 15px;
     font-weight: 600;
@@ -778,7 +776,7 @@
 }
 
 /* =========================
-   RESPONSIVE — tablet ≤ 1024px
+   RESPONSIVE — tablet
 ========================= */
 @media (max-width: 1024px) {
     .statsGrid {
@@ -787,7 +785,7 @@
 }
 
 /* =========================
-   RESPONSIVE — mobile ≤ 768px
+   RESPONSIVE — mobile
 ========================= */
 @media (max-width: 768px) {
     .header {
@@ -812,7 +810,7 @@
 }
 
 /* =========================
-   RESPONSIVE — small mobile ≤ 480px
+   RESPONSIVE — small mobile
 ========================= */
 @media (max-width: 480px) {
     .header {

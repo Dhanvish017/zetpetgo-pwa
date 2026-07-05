@@ -4,7 +4,7 @@
 .container {
   min-height: 100vh;
   width: 100%;
-  background: linear-gradient(135deg, #94b0ff 0%, #e8eeff 50%, #f5f0ff 100%);
+  background: linear-gradient(135deg, rgba(131, 144, 250, 0.4) 0%, rgba(131, 144, 250, 0.1) 50%, #F4F6FA 100%);
   display: flex;
   flex-direction: column;
   opacity: 0;
@@ -22,7 +22,7 @@
   padding: 18px 32px 8px 32px;
   background: rgba(255, 255, 255, 0.7);
   backdrop-filter: blur(8px);
-  border-bottom: 1px solid rgba(74, 108, 247, 0.1);
+  border-bottom: 1px solid rgba(131, 144, 250, 0.1);
   position: absolute;
   top: 0;
   z-index: 10;
@@ -30,7 +30,7 @@
 
 .progressBarBackground {
   height: 8px;
-  background-color: #dbeafe;
+  background-color: rgba(131, 144, 250, 0.2);
   border-radius: 4px;
   overflow: hidden;
 }
@@ -38,7 +38,7 @@
 .progressBarFill {
   height: 100%;
   border-radius: 4px;
-  background: linear-gradient(90deg, #4a6cf7, #7c3aed);
+  background: linear-gradient(90deg, #1D2F6F, #8390FA);
   transition: width 0.5s ease;
 }
 
@@ -46,7 +46,7 @@
   display: block;
   text-align: right;
   font-size: 12px;
-  color: #4a6cf7;
+  color: #1D2F6F;
   font-weight: 700;
   margin-top: 5px;
   letter-spacing: 0.3px;
@@ -65,7 +65,7 @@
 }
 
 .xpContainer {
-  background: rgba(74, 108, 247, 0.92);
+  background: rgba(29, 47, 111, 0.92);
   padding: 8px 18px;
   border-radius: 20px;
   animation: xpFloat 1.2s ease forwards;
@@ -78,24 +78,10 @@
 }
 
 @keyframes xpFloat {
-  0% {
-    opacity: 0;
-    transform: translateY(0);
-  }
-
-  20% {
-    opacity: 1;
-  }
-
-  80% {
-    opacity: 1;
-    transform: translateY(-28px);
-  }
-
-  100% {
-    opacity: 0;
-    transform: translateY(-36px);
-  }
+  0%   { opacity: 0; transform: translateY(0); }
+  20%  { opacity: 1; }
+  80%  { opacity: 1; transform: translateY(-28px); }
+  100% { opacity: 0; transform: translateY(-36px); }
 }
 
 /* =========================
@@ -114,8 +100,7 @@
   align-items: start;
 }
 
-/* Save button spans full width */
-.scrollContent>button:last-child {
+.scrollContent > button:last-child {
   grid-column: 1 / -1;
 }
 
@@ -123,17 +108,17 @@
    CARD
 ========================= */
 .card {
-  background: rgba(255, 255, 255, 0.85);
+  background: rgba(255, 255, 255, 0.9);
   backdrop-filter: blur(12px);
   border-radius: 24px;
   padding: 28px;
-  box-shadow: 0 4px 24px rgba(74, 108, 247, 0.1), 0 1px 4px rgba(0, 0, 0, 0.06);
+  box-shadow: 0 4px 24px rgba(29, 47, 111, 0.1), 0 1px 4px rgba(0, 0, 0, 0.06);
   border: 1px solid rgba(255, 255, 255, 0.9);
   transition: box-shadow 0.2s ease, transform 0.2s ease;
 }
 
 .card:hover {
-  box-shadow: 0 8px 32px rgba(74, 108, 247, 0.15), 0 2px 8px rgba(0, 0, 0, 0.07);
+  box-shadow: 0 8px 32px rgba(29, 47, 111, 0.15), 0 2px 8px rgba(0, 0, 0, 0.07);
   transform: translateY(-2px);
 }
 
@@ -144,7 +129,7 @@
   gap: 12px;
   margin-bottom: 22px;
   padding-bottom: 16px;
-  border-bottom: 1.5px solid #f0f4ff;
+  border-bottom: 1.5px solid rgba(131, 144, 250, 0.15);
 }
 
 .sectionTitle {
@@ -193,9 +178,9 @@
 
 .modernInput:focus,
 .inputFocused {
-  border-color: #4a6cf7;
-  background: #f8faff;
-  box-shadow: 0 0 0 3px rgba(74, 108, 247, 0.1);
+  border-color: #8390FA;
+  background: #fafbff;
+  box-shadow: 0 0 0 3px rgba(131, 144, 250, 0.15);
 }
 
 .modernTextarea {
@@ -242,9 +227,9 @@
 }
 
 .dropdownTriggerOpen {
-  border-color: #4a6cf7;
-  background: #f8faff;
-  box-shadow: 0 0 0 3px rgba(74, 108, 247, 0.1);
+  border-color: #8390FA;
+  background: #fafbff;
+  box-shadow: 0 0 0 3px rgba(131, 144, 250, 0.15);
 }
 
 .dropdownValue {
@@ -264,7 +249,7 @@
   border: 1.5px solid #e2e8f0;
   border-radius: 16px;
   z-index: 999;
-  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.14);
+  box-shadow: 0 12px 32px rgba(29, 47, 111, 0.14);
   overflow: hidden;
 }
 
@@ -310,8 +295,8 @@
 }
 
 .dropdownItemActive {
-  background: #eff6ff;
-  color: #4a6cf7;
+  background: rgba(131, 144, 250, 0.1);
+  color: #1D2F6F;
   font-weight: 600;
 }
 
@@ -334,7 +319,7 @@
 
 .speciesCard {
   flex: 1;
-  background: #f8faff;
+  background: #F4F6FA;
   border-radius: 18px;
   padding: 20px 10px;
   display: flex;
@@ -349,9 +334,9 @@
 }
 
 .speciesCard:hover {
-  background: #eff6ff;
+  background: rgba(131, 144, 250, 0.08);
   transform: translateY(-2px);
-  box-shadow: 0 4px 14px rgba(74, 108, 247, 0.14);
+  box-shadow: 0 4px 14px rgba(29, 47, 111, 0.14);
 }
 
 .speciesCard:active {
@@ -359,9 +344,9 @@
 }
 
 .speciesCardSelected {
-  background: #eff6ff;
-  border-color: #4a6cf7;
-  box-shadow: 0 4px 18px rgba(74, 108, 247, 0.28);
+  background: rgba(131, 144, 250, 0.1);
+  border-color: #8390FA;
+  box-shadow: 0 4px 18px rgba(131, 144, 250, 0.28);
   transform: scale(1.03);
 }
 
@@ -377,14 +362,14 @@
 }
 
 .speciesTextSelected {
-  color: #4a6cf7;
+  color: #1D2F6F;
   font-weight: 700;
 }
 
 .selectedBadge {
   position: absolute;
   top: -10px;
-  background: linear-gradient(90deg, #4a6cf7, #7c3aed);
+  background: linear-gradient(90deg, #1D2F6F, #8390FA);
   color: #fff;
   font-size: 10px;
   font-weight: bold;
@@ -410,15 +395,8 @@
 }
 
 @keyframes fadeInBadge {
-  from {
-    opacity: 0;
-    transform: scale(0.8);
-  }
-
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
+  from { opacity: 0; transform: scale(0.8); }
+  to   { opacity: 1; transform: scale(1); }
 }
 
 /* =========================
@@ -427,7 +405,7 @@
 .genderToggleContainer {
   display: flex;
   flex-direction: row;
-  background: #f1f5f9;
+  background: #edeef6;
   border-radius: 30px;
   padding: 4px;
 }
@@ -449,8 +427,8 @@
 }
 
 .genderBtnActive {
-  background: linear-gradient(90deg, #4a6cf7, #6a3ff7);
-  box-shadow: 0 2px 10px rgba(74, 108, 247, 0.3);
+  background: linear-gradient(90deg, #1D2F6F, #8390FA);
+  box-shadow: 0 2px 10px rgba(29, 47, 111, 0.3);
 }
 
 .genderText {
@@ -477,18 +455,18 @@
   padding: 18px 32px;
   border-radius: 30px;
   border: none;
-  background: linear-gradient(90deg, #4a6cf7, #2541b2);
+  background: linear-gradient(90deg, #1D2F6F, #2E4390);
   cursor: pointer;
   margin-bottom: 8px;
   margin-top: 4px;
-  box-shadow: 0 6px 24px rgba(74, 108, 247, 0.4);
+  box-shadow: 0 6px 24px rgba(29, 47, 111, 0.4);
   transition: transform 0.15s ease, box-shadow 0.15s ease;
   font-family: inherit;
 }
 
 .saveButton:hover {
   transform: translateY(-3px);
-  box-shadow: 0 12px 32px rgba(74, 108, 247, 0.5);
+  box-shadow: 0 12px 32px rgba(29, 47, 111, 0.5);
 }
 
 .saveButton:active {
@@ -510,29 +488,12 @@
 }
 
 @keyframes shake {
-  0% {
-    transform: translateX(0);
-  }
-
-  20% {
-    transform: translateX(-10px);
-  }
-
-  40% {
-    transform: translateX(10px);
-  }
-
-  60% {
-    transform: translateX(-10px);
-  }
-
-  80% {
-    transform: translateX(10px);
-  }
-
-  100% {
-    transform: translateX(0);
-  }
+  0%   { transform: translateX(0); }
+  20%  { transform: translateX(-10px); }
+  40%  { transform: translateX(10px); }
+  60%  { transform: translateX(-10px); }
+  80%  { transform: translateX(10px); }
+  100% { transform: translateX(0); }
 }
 
 /* =========================
@@ -545,7 +506,7 @@
     gap: 20px;
   }
 
-  .scrollContent>button:last-child {
+  .scrollContent > button:last-child {
     grid-column: 1;
   }
 

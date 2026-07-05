@@ -4,7 +4,7 @@
 .container {
     width: 100%;
     min-height: 100%;
-    background-color: #f8fafc;
+    background-color: #F8FAFC;
     display: flex;
     flex-direction: column;
 }
@@ -13,11 +13,11 @@
    HEADER
 ========================= */
 .header {
-    background: linear-gradient(135deg, #4a6cf7, #2541b2);
+    background: linear-gradient(135deg, #1D2F6F, #152558);
     padding: 24px 20px 20px 20px;
     border-bottom-left-radius: 30px;
     border-bottom-right-radius: 30px;
-    box-shadow: 0 4px 20px rgba(37, 65, 178, 0.3);
+    box-shadow: 0 4px 20px rgba(29, 47, 111, 0.3);
     flex-shrink: 0;
 }
 
@@ -77,7 +77,7 @@
     border-radius: 20px;
     padding: 20px;
     margin-bottom: 20px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
+    box-shadow: 0 2px 10px rgba(29, 47, 111, 0.07);
     display: flex;
     flex-direction: column;
 }
@@ -168,7 +168,7 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
+    box-shadow: 0 2px 10px rgba(29, 47, 111, 0.06);
 }
 
 .summaryItem {
@@ -220,16 +220,14 @@
 .spinner {
     width: 44px;
     height: 44px;
-    border: 4px solid #dbeafe;
-    border-top-color: #4a6cf7;
+    border: 4px solid rgba(131, 144, 250, 0.2);
+    border-top-color: #1D2F6F;
     border-radius: 50%;
     animation: spin 0.75s linear infinite;
 }
 
 @keyframes spin {
-    to {
-        transform: rotate(360deg);
-    }
+    to { transform: rotate(360deg); }
 }
 
 /* =========================

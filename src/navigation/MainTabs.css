@@ -2,23 +2,23 @@
    Design tokens
 ───────────────────────────────────────── */
 :root {
-  --accent: #6A7BFF;
-  --accent-light: #eef0ff;
-  --accent-dim: #c5caff;
+  --accent:       #8390FA;
+  --accent-light: rgba(131, 144, 250, 0.1);
+  --accent-dim:   rgba(131, 144, 250, 0.3);
 
   --sidebar-width: 240px;
   --sidebar-collapsed-width: 68px;
   --sidebar-bg: #ffffff;
-  --sidebar-border: #f0f0f2;
+  --sidebar-border: #edeef6;
 
   --topbar-height: 60px;
   --bottom-tabs-height: 64px;
 
-  --text-primary: #1a1a2e;
+  --text-primary:   #1a1a2e;
   --text-secondary: #6b7280;
-  --text-muted: #9ca3af;
+  --text-muted:     #9ca3af;
 
-  --bg-page: #f5f6fa;
+  --bg-page: #F4F6FA;
   --bg-card: #ffffff;
 
   --radius-sm: 8px;
@@ -476,12 +476,10 @@ button {
     flex-direction: column;
   }
 
-  /* Hide sidebar entirely on mobile */
   .sidebar {
     display: none;
   }
 
-  /* Main content fills all but the bottom bar */
   .main-content {
     padding-bottom: var(--bottom-tabs-height);
   }
@@ -494,7 +492,6 @@ button {
     padding: 0 16px;
   }
 
-  /* Show hamburger on mobile */
   .topbar__hamburger {
     display: flex;
   }
@@ -510,13 +507,8 @@ button {
   }
 
   @keyframes fadeIn {
-    from {
-      opacity: 0;
-    }
-
-    to {
-      opacity: 1;
-    }
+    from { opacity: 0; }
+    to   { opacity: 1; }
   }
 
   /* Drawer panel */
@@ -532,7 +524,7 @@ button {
     z-index: 1000;
     transform: translateX(-100%);
     transition: transform 250ms ease;
-    box-shadow: 4px 0 24px rgba(0, 0, 0, 0.12);
+    box-shadow: 4px 0 24px rgba(29, 47, 111, 0.15);
   }
 
   .drawer--open {
@@ -615,7 +607,6 @@ button {
     flex: 1;
   }
 
-  /* Settings group in drawer */
   .drawer__group-btn {
     display: flex;
     align-items: center;

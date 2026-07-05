@@ -2,6 +2,8 @@ import React from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 
 import LoginScreen from "./screens/login/LoginScreen";
+import SignUpScreen from "./screens/signup/Signupscreen.jsx";
+import AuthCallback from "./screens/auth/AuthCallback.jsx";
 import MainTabs from "./navigation/MainTabs";
 import DashboardScreen from "./screens/dashboard/dashboardScreen";
 import AddAnimalScreen from "./screens/addanimal/AddAnimalScreen";
@@ -32,6 +34,8 @@ function App() {
       />
 
       <Route path="/login" element={<LoginScreen />} />
+      <Route path="/signup" element={<SignUpScreen />} />
+      <Route path="/auth/callback" element={<AuthCallback />} />
 
       {/* Layout route — MainTabs renders sidebar/topbar + <Outlet /> */}
       <Route element={<MainTabs />}>

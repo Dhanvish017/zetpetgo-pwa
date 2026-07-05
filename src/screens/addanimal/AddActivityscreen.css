@@ -8,7 +8,7 @@
   display: flex;
   flex-direction: column;
   height: 100vh;
-  background-color: #4a6cf7;
+  background-color: #1D2F6F;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   position: relative;
   overflow: hidden;
@@ -16,7 +16,7 @@
 
 /* ---------------- Header ---------------- */
 .header {
-  background-color: #4a6cf7;
+  background-color: #1D2F6F;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -82,15 +82,15 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: #eef2ff;
+  background-color: #F4F6FA;
   gap: 12px;
 }
 
 .spinner {
   width: 36px;
   height: 36px;
-  border: 4px solid #c7d2fe;
-  border-top-color: #4a6cf7;
+  border: 4px solid rgba(131, 144, 250, 0.25);
+  border-top-color: #1D2F6F;
   border-radius: 50%;
   animation: spin 0.8s linear infinite;
 }
@@ -106,9 +106,7 @@
 }
 
 @keyframes spin {
-  to {
-    transform: rotate(360deg);
-  }
+  to { transform: rotate(360deg); }
 }
 
 .loadingText {
@@ -120,7 +118,7 @@
 .tabBar {
   display: flex;
   background-color: #fff;
-  border-bottom: 1px solid #e0e7ff;
+  border-bottom: 1px solid rgba(131, 144, 250, 0.2);
   flex-shrink: 0;
 }
 
@@ -138,7 +136,7 @@
 }
 
 .tabBtnActive {
-  border-bottom-color: #4a6cf7;
+  border-bottom-color: #8390FA;
 }
 
 .tabIcon {
@@ -157,14 +155,14 @@
 }
 
 .tabTextActive {
-  color: #4a6cf7;
+  color: #1D2F6F;
 }
 
 .stepBadge {
   width: 18px;
   height: 18px;
   border-radius: 9px;
-  background-color: #e0e7ff;
+  background-color: rgba(131, 144, 250, 0.2);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -175,7 +173,7 @@
 }
 
 .stepBadgeActive {
-  background-color: #4a6cf7;
+  background-color: #8390FA;
 }
 
 .stepBadgeDone {
@@ -188,9 +186,9 @@
   align-items: center;
   justify-content: center;
   gap: 8px;
-  background-color: #4a6cf7;
+  background-color: #1D2F6F;
   padding: 10px 0;
-  border-bottom: 1px solid #c7d2fe;
+  border-bottom: 1px solid rgba(131, 144, 250, 0.25);
   border: none;
   color: #fff;
   font-weight: 700;
@@ -203,7 +201,7 @@
 .body {
   flex: 1;
   overflow-y: auto;
-  background-color: #eef2ff;
+  background-color: #F4F6FA;
   padding: 14px;
   padding-bottom: 20px;
 }
@@ -219,7 +217,7 @@
 
 .tableHeader {
   display: flex;
-  background-color: #4a6cf7;
+  background-color: #1D2F6F;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
   padding: 10px 0;
@@ -240,7 +238,7 @@
 .tableRow {
   display: flex;
   align-items: center;
-  border-bottom: 1px solid #c7d2fe;
+  border-bottom: 1px solid rgba(131, 144, 250, 0.2);
   min-height: 52px;
 }
 
@@ -249,7 +247,7 @@
 }
 
 .rowOdd {
-  background-color: #eef2ff;
+  background-color: #F4F6FA;
 }
 
 .td {
@@ -261,7 +259,7 @@
 }
 
 .cellInput {
-  border: 1px solid #c7d2fe;
+  border: 1px solid rgba(131, 144, 250, 0.3);
   border-radius: 8px;
   padding: 5px 8px;
   font-size: 13px;
@@ -274,14 +272,14 @@
 
 .cellInput:focus {
   outline: none;
-  border-color: #4a6cf7;
+  border-color: #8390FA;
 }
 
 .cellDropdown {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border: 1px solid #c7d2fe;
+  border: 1px solid rgba(131, 144, 250, 0.3);
   border-radius: 8px;
   padding: 7px 8px;
   background-color: #fff;
@@ -292,8 +290,8 @@
 }
 
 .cellDropdownSelected {
-  border-color: #4a6cf7;
-  background-color: #eef2ff;
+  border-color: #8390FA;
+  background-color: rgba(131, 144, 250, 0.06);
 }
 
 .cellDropdownText {
@@ -307,7 +305,7 @@
 }
 
 .cellDropdownSelectedText {
-  color: #3730a3;
+  color: #1D2F6F;
   font-weight: 600;
 }
 
@@ -321,23 +319,23 @@
 }
 
 .chevronActive {
-  color: #4a6cf7;
+  color: #8390FA;
 }
 
 .stageLocked {
-  background-color: #eef2ff;
+  background-color: rgba(131, 144, 250, 0.08);
   border-radius: 8px;
   padding: 7px 10px;
   width: 100%;
   display: flex;
   justify-content: center;
-  border: 1px solid #c7d2fe;
+  border: 1px solid rgba(131, 144, 250, 0.25);
 }
 
 .stageLockedText {
   font-size: 13px;
   font-weight: 700;
-  color: #4a6cf7;
+  color: #1D2F6F;
 }
 
 .autoCell {
@@ -352,19 +350,19 @@
 
 .autoText {
   font-size: 12px;
-  color: #3730a3;
+  color: #1D2F6F;
   font-weight: 600;
 }
 
 .dayBadge {
-  background-color: #c7d2fe;
+  background-color: rgba(131, 144, 250, 0.2);
   border-radius: 10px;
   padding: 3px 7px;
 }
 
 .dayText {
   font-size: 11px;
-  color: #3730a3;
+  color: #1D2F6F;
   font-weight: 700;
 }
 
@@ -387,10 +385,10 @@
   gap: 6px;
   margin-top: 12px;
   padding: 9px 14px;
-  background-color: #e0e7ff;
+  background-color: rgba(131, 144, 250, 0.12);
   border-radius: 10px;
-  border: 1px dashed #a5b4fc;
-  color: #4a6cf7;
+  border: 1px dashed rgba(131, 144, 250, 0.5);
+  color: #1D2F6F;
   font-size: 13px;
   font-weight: 600;
   cursor: pointer;
@@ -402,10 +400,10 @@
   align-items: flex-start;
   gap: 8px;
   margin-top: 16px;
-  background-color: #e0e7ff;
+  background-color: rgba(131, 144, 250, 0.1);
   border-radius: 10px;
   padding: 12px;
-  border: 1px solid #c7d2fe;
+  border: 1px solid rgba(131, 144, 250, 0.25);
 }
 
 .infoIcon {
@@ -414,7 +412,7 @@
 
 .infoText {
   font-size: 12px;
-  color: #3730a3;
+  color: #1D2F6F;
   flex: 1;
   line-height: 17px;
 }
@@ -448,8 +446,8 @@
 /* ---------------- Footer ---------------- */
 .footer {
   padding: 16px;
-  background-color: #eef2ff;
-  border-top: 1px solid #c7d2fe;
+  background-color: #F4F6FA;
+  border-top: 1px solid rgba(131, 144, 250, 0.2);
   flex-shrink: 0;
 }
 
@@ -460,7 +458,7 @@
 
 .nextBtn {
   width: 100%;
-  background-color: #4a6cf7;
+  background-color: #1D2F6F;
   border-radius: 14px;
   height: 52px;
   display: flex;
@@ -471,7 +469,7 @@
   font-weight: 700;
   font-size: 15px;
   cursor: pointer;
-  box-shadow: 0 2px 6px rgba(74, 108, 247, 0.4);
+  box-shadow: 0 2px 6px rgba(29, 47, 111, 0.35);
 }
 
 .nextArrow {
@@ -480,7 +478,7 @@
 
 .saveBtn {
   flex: 1;
-  background-color: #4a6cf7;
+  background-color: #1D2F6F;
   border-radius: 14px;
   height: 52px;
   display: flex;
@@ -492,7 +490,7 @@
   font-weight: 700;
   font-size: 15px;
   cursor: pointer;
-  box-shadow: 0 2px 6px rgba(74, 108, 247, 0.4);
+  box-shadow: 0 2px 6px rgba(29, 47, 111, 0.35);
 }
 
 .saveBtn:disabled {
@@ -507,8 +505,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 2px solid #4a6cf7;
-  color: #4a6cf7;
+  border: 2px solid #8390FA;
+  color: #1D2F6F;
   font-weight: 700;
   font-size: 14px;
   cursor: pointer;
@@ -536,7 +534,7 @@
   max-width: 360px;
   max-height: 60vh;
   overflow: hidden;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 8px 24px rgba(29, 47, 111, 0.2);
   display: flex;
   flex-direction: column;
 }
@@ -553,8 +551,8 @@
   align-items: center;
   gap: 8px;
   padding: 14px;
-  background-color: #eef2ff;
-  border-bottom: 1px solid #c7d2fe;
+  background-color: rgba(131, 144, 250, 0.08);
+  border-bottom: 1px solid rgba(131, 144, 250, 0.2);
 }
 
 .dateModalBox .modalHeader {
@@ -570,7 +568,7 @@
 .modalTitle {
   font-size: 15px;
   font-weight: 700;
-  color: #3730a3;
+  color: #1D2F6F;
   flex: 1;
 }
 
@@ -597,12 +595,12 @@
 }
 
 .modalItem:hover {
-  background-color: #f8faff;
+  background-color: rgba(131, 144, 250, 0.05);
 }
 
 .modalItemIcon {
   font-size: 14px;
-  color: #4a6cf7;
+  color: #8390FA;
 }
 
 .modalItemText {
@@ -615,10 +613,10 @@
   display: flex;
   align-items: center;
   gap: 10px;
-  border: 1px solid #c7d2fe;
+  border: 1px solid rgba(131, 144, 250, 0.3);
   border-radius: 12px;
   padding: 14px;
-  background-color: #f8faff;
+  background-color: #F8FAFC;
   margin: 16px 0 12px 0;
   cursor: pointer;
 }
@@ -643,7 +641,7 @@
   align-items: center;
   justify-content: center;
   gap: 8px;
-  background-color: #4a6cf7;
+  background-color: #1D2F6F;
   border-radius: 12px;
   padding: 14px 0;
   margin-top: 8px;
@@ -657,9 +655,10 @@
 
 .applyBtn:disabled {
   cursor: not-allowed;
+  opacity: 0.6;
 }
 
-/* ---------------- Scrollbars (subtle, matches app palette) ---------------- */
+/* ---------------- Scrollbars ---------------- */
 .body::-webkit-scrollbar,
 .tableScroll::-webkit-scrollbar,
 .modalList::-webkit-scrollbar {
@@ -670,7 +669,7 @@
 .body::-webkit-scrollbar-thumb,
 .tableScroll::-webkit-scrollbar-thumb,
 .modalList::-webkit-scrollbar-thumb {
-  background-color: #c7d2fe;
+  background-color: rgba(131, 144, 250, 0.3);
   border-radius: 8px;
 }
 
