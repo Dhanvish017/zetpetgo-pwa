@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
+import api from "../../lib/api";
 import styles from "./AnimalDetailsScreen.module.css";
 
 // =====================
@@ -58,10 +58,7 @@ const AnimalDetailScreen = () => {
   const fetchOwners = useCallback(async () => {
     try {
       setLoading(true);
-      const token = localStorage.getItem("token");
-      const res = await axios.get("https://vetcare-1.onrender.com/api/owners", {
-        headers: { Authorization: `Bearer ${token}` },
-      });
+      const res = await api.get("/api/owners");
       setOwners(res.data);
       setFilteredOwners(res.data);
       setError(null);

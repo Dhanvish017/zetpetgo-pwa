@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useCallback } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import axios from "axios";
+import api from "../../lib/api";
 import styles from "./OwnerSingleScreen.module.css";
 
 // =====================
@@ -72,11 +72,7 @@ const OwnerSingleScreen = () => {
 
     const fetchOwnerDetails = useCallback(async () => {
         try {
-            const token = localStorage.getItem("token");
-            const res = await axios.get(
-                `https://vetcare-1.onrender.com/api/owners/${ownerId}`,
-                { headers: { Authorization: `Bearer ${token}` } }
-            );
+            const res = await api.get(`/api/owners/${ownerId}`);
             setOwner(res.data);
         } catch (err) {
             console.error("FETCH OWNER ERROR:", err.response?.data || err.message);

@@ -1,9 +1,7 @@
 import React, { useEffect, useState, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
+import api from "../../lib/api";
 import styles from "./dashboardScreen.module.css";
-
-const API_BASE = "https://vetcare-1.onrender.com";
 
 // =====================
 // ICONS
@@ -82,10 +80,7 @@ const dashboardScreen = ({ onOpenDrawer }) => {
   const fetchStats = useCallback(async () => {
     try {
       setLoading(true);
-      const token = localStorage.getItem("token");
-      const res = await axios.get(`${API_BASE}/api/dashboard/stats`, {
-        headers: { Authorization: `Bearer ${token}` },
-      });
+      const res = await api.get("/api/dashboard/stats");
       setStats({
         vaccine: res.data.vaccine || {},
         deworming: res.data.deworming || {},

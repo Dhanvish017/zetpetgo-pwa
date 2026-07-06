@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
+import api from "../../lib/api";
 import styles from "./CreateAccountScreen.module.css";
 
 // =====================
@@ -79,14 +79,11 @@ const CreateAccountScreen = () => {
         if (!validate()) return;
         setLoading(true);
         try {
-            const token = localStorage.getItem("token");
             const profileData = selectedType === "clinic"
                 ? { clinicName: form.clinicName, name: form.doctorName, phone: form.phoneNumber, address: form.permanentAddress, accountType: "clinic" }
                 : { name: form.doctorName, phone: form.phoneNumber, address: form.permanentAddress, accountType: "individual" };
 
-            await axios.put("https://vetcare-1.onrender.com/api/profile", profileData, {
-                headers: { Authorization: `Bearer ${token}` },
-            });
+            await api.put("/api/profile", profileData);
             navigate("/dashboard", { replace: true });
         } catch (error) {
             alert(error.response?.data?.message || "Failed to create account");

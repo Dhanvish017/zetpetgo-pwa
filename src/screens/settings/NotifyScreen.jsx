@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
+import api from "../../lib/api";
 import { MESSAGE_TEMPLATES_UI } from "../../constants/messageTemplates";
 import styles from "./NotifyScreen.module.css";
 
-const API_URL = "https://vetcare-1.onrender.com";
 const SELECTIONS_KEY = "notify_category_selections";
 
 const CATEGORIES = [
@@ -94,10 +93,7 @@ export default function NotifyScreen() {
             if (stored) setSelections(JSON.parse(stored));
 
             // 2. Sync from backend
-            const token = localStorage.getItem("token");
-            const res = await axios.get(`${API_URL}/api/notify/whatsapp-template`, {
-                headers: { Authorization: `Bearer ${token}` },
-            });
+            const res = await api.get("/api/notify/whatsapp-template");
             const backendData = res.data?.templateId;
             if (backendData && typeof backendData === "object" && Object.keys(backendData).length > 0) {
                 setSelections(backendData);
@@ -117,11 +113,9 @@ export default function NotifyScreen() {
             localStorage.setItem(SELECTIONS_KEY, JSON.stringify(updated));
 
             setSaving(categoryKey);
-            const token = localStorage.getItem("token");
-            await axios.post(
-                `${API_URL}/api/notify/whatsapp-template`,
-                { templateId, category: categoryKey },
-                { headers: { Authorization: `Bearer ${token}` } }
+            await api.post(
+                "/api/notify/whatsapp-template",
+                { templateId, category: categoryKey }
             );
         } catch (err) {
             console.log("Template save error:", err.message);

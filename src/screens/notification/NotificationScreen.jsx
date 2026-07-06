@@ -1,9 +1,8 @@
 import React, { useEffect, useState, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
+import api from "../../lib/api";
 import styles from "./NotificationScreen.module.css";
 
-const API_BASE = "https://vetcare-1.onrender.com";
 const SENT_KEY = "notif_sent_ids";
 
 // =====================
@@ -146,14 +145,10 @@ const NotificationsScreen = () => {
   const [specialList, setSpecialList] = useState([]);
   const [thanksList, setThanksList] = useState([]);
 
-  const getToken = () => localStorage.getItem("token");
-
   const fetchNotifications = useCallback(async () => {
     try {
       setLoading(true);
-      const res = await axios.get(`${API_BASE}/api/notifications`, {
-        headers: { Authorization: `Bearer ${getToken()}` },
-      });
+      const res = await api.get("/api/notifications");
       const ids = getSentIds();
       setNotificationData({
         today: applyCompleted(res.data.today || [], ids),
@@ -167,9 +162,7 @@ const NotificationsScreen = () => {
   const fetchMissed = useCallback(async () => {
     try {
       setLoading(true);
-      const res = await axios.get(`${API_BASE}/api/notifications/missed`, {
-        headers: { Authorization: `Bearer ${getToken()}` },
-      });
+      const res = await api.get("/api/notifications/missed");
       setMissedList(applyCompleted(res.data || [], getSentIds()));
     } catch { alert("Failed to fetch missed messages"); }
     finally { setLoading(false); }
@@ -178,9 +171,7 @@ const NotificationsScreen = () => {
   const fetchSpecial = useCallback(async () => {
     try {
       setLoading(true);
-      const res = await axios.get(`${API_BASE}/api/notifications/special`, {
-        headers: { Authorization: `Bearer ${getToken()}` },
-      });
+      const res = await api.get("/api/notifications/special");
       setSpecialList(applyCompleted(res.data || [], getSentIds()));
     } catch { alert("Failed to fetch special messages"); }
     finally { setLoading(false); }
@@ -189,9 +180,7 @@ const NotificationsScreen = () => {
   const fetchThanks = useCallback(async () => {
     try {
       setLoading(true);
-      const res = await axios.get(`${API_BASE}/api/notifications/thank-you`, {
-        headers: { Authorization: `Bearer ${getToken()}` },
-      });
+      const res = await api.get("/api/notifications/thank-you");
       setThanksList(res.data || []);
     } catch { alert("Failed to fetch thank you list"); }
     finally { setLoading(false); }
@@ -206,7 +195,6 @@ const NotificationsScreen = () => {
 
   const sendWhatsApp = async (item) => {
     try {
-      const token = getToken();
       const reminderPayload = {
         ownerName: item.ownerName,
         petName: item.animalName,
@@ -223,10 +211,9 @@ const NotificationsScreen = () => {
         else messageType = "new_owner";
       } else if (activeTab === "thanks") messageType = "thankyou";
 
-      const buildRes = await axios.post(
-        `${API_BASE}/api/notify/build-whatsapp-message`,
-        { reminder: reminderPayload, messageType },
-        { headers: { Authorization: `Bearer ${token}` } }
+      const buildRes = await api.post(
+        "/api/notify/build-whatsapp-message",
+        { reminder: reminderPayload, messageType }
       );
       const message = buildRes.data.message;
 
@@ -247,10 +234,9 @@ const NotificationsScreen = () => {
       if (activeTab === "missed") endpoint = "send-followup";
       else if (activeTab === "special") endpoint = "send-special";
 
-      await axios.post(
-        `${API_BASE}/api/notifications/${endpoint}/${item.animalId}`,
-        { type: item.type, scheduleRowId: item.scheduleRowId, ownerId: item.ownerId, specialType: item.specialType },
-        { headers: { Authorization: `Bearer ${token}` } }
+      await api.post(
+        `/api/notifications/${endpoint}/${item.animalId}`,
+        { type: item.type, scheduleRowId: item.scheduleRowId, ownerId: item.ownerId, specialType: item.specialType }
       );
 
       saveSentId(item._id);

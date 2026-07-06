@@ -1,9 +1,7 @@
 import React, { useEffect, useState, useCallback, useRef } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import axios from "axios";
+import api from "../../lib/api";
 import styles from "./AnimalSingleScreen.module.css";
-
-const API_BASE = "https://vetcare-1.onrender.com";
 
 // =====================
 // CONSTANTS
@@ -219,10 +217,9 @@ const AnimalSingleScreen = () => {
         if (!id) { setError("No animal ID provided"); setLoading(false); return; }
         const fetch = async () => {
             try {
-                const token = localStorage.getItem("token");
                 const [animalRes, scheduleRes] = await Promise.all([
-                    axios.get(`${API_BASE}/api/animals/${id}`, { headers: { Authorization: `Bearer ${token}` } }),
-                    axios.get(`${API_BASE}/api/animal-schedule/${id}`, { headers: { Authorization: `Bearer ${token}` } }),
+                    api.get(`/api/animals/${id}`),
+                    api.get(`/api/animal-schedule/${id}`),
                 ]);
                 setAnimal(animalRes.data);
                 setVaccineSchedule(scheduleRes.data.vaccineSchedule || []);
@@ -241,11 +238,9 @@ const AnimalSingleScreen = () => {
     const saveSchedule = useCallback(async (vSchedule, dSchedule) => {
         try {
             setSaving(true);
-            const token = localStorage.getItem("token");
-            await axios.put(
-                `${API_BASE}/api/animal-schedule/${id}`,
-                { vaccineSchedule: vSchedule, dewormingSchedule: dSchedule },
-                { headers: { Authorization: `Bearer ${token}` } }
+            await api.put(
+                `/api/animal-schedule/${id}`,
+                { vaccineSchedule: vSchedule, dewormingSchedule: dSchedule }
             );
         } catch {
             alert("Failed to save changes.");
@@ -259,8 +254,7 @@ const AnimalSingleScreen = () => {
         if (!window.confirm(`Are you sure you want to delete ${animal?.name || "this animal"}?`)) return;
         try {
             setDeleting(true);
-            const token = localStorage.getItem("token");
-            await axios.delete(`${API_BASE}/api/animal-schedule/${id}`, { headers: { Authorization: `Bearer ${token}` } });
+            await api.delete(`/api/animal-schedule/${id}`);
             alert("Animal removed.");
             navigate(-1);
         } catch {

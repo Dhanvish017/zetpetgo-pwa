@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useMemo, useRef } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import axios from "axios";
+import api from "../../lib/api";
 import styles from "./ReportScreen.module.css";
 
 // =====================
@@ -140,11 +140,7 @@ const ReportScreen = () => {
     useEffect(() => {
         const fetchReportData = async () => {
             try {
-                const token = localStorage.getItem("token");
-                const res = await axios.get(
-                    `https://vetcare-1.onrender.com/api/owners/${ownerId}/reports`,
-                    { headers: { Authorization: `Bearer ${token}` } }
-                );
+                const res = await api.get(`/api/owners/${ownerId}/reports`);
                 if (res.data) {
                     setMetrics({
                         notificationsReceived: res.data.notificationsReceived || 0,

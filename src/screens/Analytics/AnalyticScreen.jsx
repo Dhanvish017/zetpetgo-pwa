@@ -1,9 +1,7 @@
 import React, { useEffect, useState, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
+import api from "../../lib/api";
 import styles from "./AnalyticScreen.module.css";
-
-const API_BASE = "https://vetcare-1.onrender.com";
 
 // =====================
 // ICONS
@@ -68,10 +66,7 @@ const AnalyticScreen = () => {
 
   const fetchAnalytics = useCallback(async () => {
     try {
-      const token = localStorage.getItem("token");
-      const res = await axios.get(`${API_BASE}/api/analytics/today`, {
-        headers: { Authorization: `Bearer ${token}` },
-      });
+      const res = await api.get("/api/analytics/today");
       setData(res.data);
     } catch (err) {
       console.log("Analytics Error:", err);

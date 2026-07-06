@@ -1,9 +1,7 @@
 import React, { useEffect, useState, useRef } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import axios from "axios";
+import api from "../../lib/api";
 import "./AddActivityscreen.css";
-
-const API_BASE = "https://vetcare-1.onrender.com";
 
 const VACCINE_OPTIONS = {
   dog: ["DHPPi+RL", "DHPPi+L", "Puppy DP", "Antirabies", "Custom"],
@@ -126,10 +124,7 @@ const AddActivityScreen = () => {
     if (!routeSpecies && animalId) {
       const fetchSpecies = async () => {
         try {
-          const token = localStorage.getItem("token");
-          const res = await axios.get(`${API_BASE}/api/animals/${animalId}`, {
-            headers: { Authorization: `Bearer ${token}` },
-          });
+          const res = await api.get(`/api/animals/${animalId}`);
           if (res.data?.species) setSpecies(res.data.species);
         } catch (e) {
           console.log("Failed to fetch species", e.message);
@@ -149,10 +144,7 @@ const AddActivityScreen = () => {
   useEffect(() => {
     const loadTemplate = async () => {
       try {
-        const token = localStorage.getItem("token");
-        const res = await axios.get(`${API_BASE}/api/template`, {
-          headers: { Authorization: `Bearer ${token}` },
-        });
+        const res = await api.get("/api/template");
         if (res.data.scheduleTemplate) setTemplate(res.data.scheduleTemplate);
       } catch (e) {
         // silent, same as native
@@ -304,7 +296,6 @@ const AddActivityScreen = () => {
     }
     try {
       setSaving(true);
-      const token = localStorage.getItem("token");
 
       const vaccineSchedule = vaccineRows
         .filter((row) => row.vaccineName || row.customVaccine)
@@ -327,10 +318,9 @@ const AddActivityScreen = () => {
             status: "pending",
           }));
 
-      await axios.put(
-        `${API_BASE}/api/animals/${animalId}/schedule`,
-        { vaccineSchedule, dewormingSchedule },
-        { headers: { Authorization: `Bearer ${token}` } }
+      await api.put(
+        `/api/animals/${animalId}/schedule`,
+        { vaccineSchedule, dewormingSchedule }
       );
 
       window.alert("Success: Schedule saved successfully!");

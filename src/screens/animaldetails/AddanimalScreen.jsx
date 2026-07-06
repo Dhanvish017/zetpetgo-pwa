@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import axios from "axios";
+import api from "../../lib/api";
 import { allBreeds } from "../../constants/breeds";
 import styles from "./AddanimalScreen.module.css";
 
@@ -150,9 +150,8 @@ const AddanimalScreen = () => {
         if (!name.trim()) { alert("Animal name is required"); return; }
         try {
             setLoading(true);
-            const token = localStorage.getItem("token");
-            await axios.post(
-                "https://vetcare-1.onrender.com/api/animals",
+            await api.post(
+                "/api/animals",
                 {
                     owner_id: ownerId,
                     name: name.trim(),
@@ -161,8 +160,7 @@ const AddanimalScreen = () => {
                     age: age || null,
                     gender: gender || null,
                     dob: dob ? dob.toISOString().split("T")[0] : null,
-                },
-                { headers: { Authorization: `Bearer ${token}` } }
+                }
             );
             alert("Animal added successfully!");
             navigate(-1);

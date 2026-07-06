@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
+import api from "../../lib/api";
 import { allBreeds } from "../../constants/breeds";
 import styles from "./AddAnimalScreen.module.css";
 import AddActivityScreen from "./AddActivityscreen";
@@ -308,12 +308,7 @@ const AddAnimalScreen = () => {
   useEffect(() => {
     const checkProfileGuard = async () => {
       try {
-        const token = localStorage.getItem("token");
-        if (!token) { navigate("/login"); return; }
-
-        const res = await axios.get("https://vetcare-1.onrender.com/api/profile", {
-          headers: { Authorization: `Bearer ${token}` },
-        });
+        const res = await api.get("/api/profile");
 
         if (!res.data.isProfileComplete) {
           const go = window.confirm(
@@ -373,17 +368,14 @@ const AddAnimalScreen = () => {
     }
 
     try {
-      const token = localStorage.getItem("token");
-
-      const ownerRes = await axios.post(
-        "https://vetcare-1.onrender.com/api/owners",
+      const ownerRes = await api.post(
+        "/api/owners",
         {
           name: formData.ownerName,
           phone: formData.ownerPhone,
           email: formData.ownerEmail,
           address: formData.address,
-        },
-        { headers: { Authorization: `Bearer ${token}` } }
+        }
       );
 
       // Debug: confirm all three required fields are present
@@ -391,8 +383,8 @@ const AddAnimalScreen = () => {
       console.log("Owner response:", ownerRes.data);
       console.log("owner_id:", ownerId, "| name:", formData.animalName, "| species:", formData.species);
 
-      const animalRes = await axios.post(
-        "https://vetcare-1.onrender.com/api/animals",
+      const animalRes = await api.post(
+        "/api/animals",
         {
           owner_id: ownerId,
           name: formData.animalName,
@@ -412,8 +404,7 @@ const AddAnimalScreen = () => {
             nextDewormingDate: formData.nextDewormingDate ? new Date(formData.nextDewormingDate).toISOString() : null,
             dewormingStatus: "pending",
           },
-        },
-        { headers: { Authorization: `Bearer ${token}` } }
+        }
       );
 
       const animalId = animalRes.data?._id || animalRes.data?.animal?._id || animalRes.data?.id;

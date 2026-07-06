@@ -1,9 +1,7 @@
 import React, { useEffect, useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
+import api from "../../lib/api";
 import styles from "./Templatesettingsscreen.module.css";
-
-const API_BASE = "https://vetcare-1.onrender.com";
 
 const VACCINE_STAGES = ["1st", "2nd", "3rd", "4th", "Annual"];
 const PREFILLED_STAGES = ["1st", "2nd", "3rd", "4th", "Annual"];
@@ -85,10 +83,7 @@ const TemplateSettingsScreen = () => {
     useEffect(() => {
         const load = async () => {
             try {
-                const token = localStorage.getItem("token");
-                const res = await axios.get(`${API_BASE}/api/template`, {
-                    headers: { Authorization: `Bearer ${token}` },
-                });
+                const res = await api.get("/api/template");
                 if (res.data.scheduleTemplate) {
                     const saved = res.data.scheduleTemplate;
                     setTemplate({
@@ -166,7 +161,6 @@ const TemplateSettingsScreen = () => {
     const handleSave = async () => {
         try {
             setSaving(true);
-            const token = localStorage.getItem("token");
             const serialize = (rows, t) => rows.map(r => ({
                 ...(t === "vaccine"
                     ? { stage: r.stage, vaccineName: r.vaccineName === "Custom" ? (r.customName || "") : r.vaccineName }
@@ -178,7 +172,7 @@ const TemplateSettingsScreen = () => {
                 dog: { vaccine: serialize(template.dog.vaccine, "vaccine"), deworming: serialize(template.dog.deworming, "deworming") },
                 cat: { vaccine: serialize(template.cat.vaccine, "vaccine"), deworming: serialize(template.cat.deworming, "deworming") },
             };
-            await axios.put(`${API_BASE}/api/template`, { scheduleTemplate: payload }, { headers: { Authorization: `Bearer ${localStorage.getItem("token")}` } });
+            await api.put("/api/template", { scheduleTemplate: payload });
             alert("Template saved successfully!");
             navigate(-1);
         } catch (err) {
