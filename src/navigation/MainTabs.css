@@ -447,6 +447,7 @@ button {
 
   .content-area {
     padding: 0;
+    padding-bottom: calc(var(--bottom-tabs-height) + env(safe-area-inset-bottom, 0px));
   }
 
   /* Drawer overlay */
@@ -631,17 +632,20 @@ button {
   .bottom-tabs {
     display: flex;
     position: fixed;
-    bottom: 16px;
-    left: 16px;
-    right: 16px;
-    height: var(--bottom-tabs-height);
-    background: rgba(206, 150, 230, 0.9);
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: calc(var(--bottom-tabs-height) + env(safe-area-inset-bottom, 0px));
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+    background: rgba(206, 150, 230, 0.96);
     backdrop-filter: blur(20px) saturate(140%);
     -webkit-backdrop-filter: blur(20px) saturate(140%);
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    border-radius: 22px;
+    border: none;
+    border-top: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 0;
     z-index: 100;
-    box-shadow: 0 10px 30px rgba(150, 80, 180, 0.2);
+    box-shadow: 0 -6px 20px rgba(150, 80, 180, 0.18);
   }
 
   .bottom-tabs__item {
