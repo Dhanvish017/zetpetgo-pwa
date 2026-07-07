@@ -683,4 +683,37 @@ button {
     font-weight: 500;
     white-space: nowrap;
   }
+
+  .bottom-tabs__menu-btn {
+    flex: 0 0 auto;
+    align-self: center;
+    width: 52px;
+    height: 52px;
+    margin-top: -26px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    background: linear-gradient(135deg, #c101ec, #811383);
+    box-shadow: 0 6px 16px rgba(129, 19, 131, 0.45), 0 0 0 4px rgba(206, 150, 230, 0.96);
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+  }
+
+  .bottom-tabs__menu-btn svg {
+    width: 24px;
+    height: 24px;
+  }
+
+  .bottom-tabs__menu-btn:hover {
+    transform: scale(1.05);
+  }
+
+  .bottom-tabs__menu-btn:active {
+    transform: scale(0.95);
+  }
+
+  .bottom-tabs__menu-btn--active {
+    box-shadow: 0 6px 20px rgba(129, 19, 131, 0.6), 0 0 0 4px rgba(206, 150, 230, 0.96);
+  }
 }

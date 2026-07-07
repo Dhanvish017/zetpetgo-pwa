@@ -319,7 +319,7 @@ export default function MainTabs() {
 
       {/* Bottom tab bar — mobile only */}
       <nav className="bottom-tabs" aria-label="Main navigation">
-        {NAV_ITEMS.map((item) => (
+        {NAV_ITEMS.slice(0, 2).map((item) => (
           <NavLink
             key={item.path}
             to={item.path}
@@ -338,19 +338,33 @@ export default function MainTabs() {
 
         <button
           type="button"
-          className={`bottom-tabs__item${drawerOpen ? " bottom-tabs__item--active" : ""}`}
+          className={`bottom-tabs__menu-btn${drawerOpen ? " bottom-tabs__menu-btn--active" : ""}`}
           onClick={() => setDrawerOpen(true)}
           aria-label="Open menu"
         >
-          <span className="bottom-tabs__icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round">
-              <line x1="3" y1="6" x2="21" y2="6" />
-              <line x1="3" y1="12" x2="21" y2="12" />
-              <line x1="3" y1="18" x2="21" y2="18" />
-            </svg>
-          </span>
-          <span className="bottom-tabs__label">Menu</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
+            <line x1="3" y1="6" x2="21" y2="6" />
+            <line x1="3" y1="12" x2="21" y2="12" />
+            <line x1="3" y1="18" x2="21" y2="18" />
+          </svg>
         </button>
+
+        {NAV_ITEMS.slice(2).map((item) => (
+          <NavLink
+            key={item.path}
+            to={item.path}
+            className={({ isActive }) =>
+              `bottom-tabs__item ${isActive ? "bottom-tabs__item--active" : ""}`
+            }
+          >
+            {({ isActive }) => (
+              <>
+                <span className="bottom-tabs__icon">{item.icon(isActive)}</span>
+                <span className="bottom-tabs__label">{item.label}</span>
+              </>
+            )}
+          </NavLink>
+        ))}
       </nav>
     </div>
   );
