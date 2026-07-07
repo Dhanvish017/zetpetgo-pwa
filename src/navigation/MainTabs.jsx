@@ -42,19 +42,6 @@ const NAV_ITEMS = [
     ),
   },
   {
-    path: "/reports",
-    label: "Report",
-    icon: (active) => (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={active ? 2.2 : 1.8} strokeLinecap="round" strokeLinejoin="round">
-        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
-        <polyline points="14 2 14 8 20 8" />
-        <line x1="16" y1="13" x2="8" y2="13" />
-        <line x1="16" y1="17" x2="8" y2="17" />
-        <polyline points="10 9 9 9 8 9" />
-      </svg>
-    ),
-  },
-  {
     path: "/notifications",
     label: "Notifications",
     icon: (active) => (
@@ -66,6 +53,20 @@ const NAV_ITEMS = [
     ),
   },
 ];
+
+const REPORT_ITEM = {
+  path: "/reports",
+  label: "Report",
+  icon: (active) => (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={active ? 2.2 : 1.8} strokeLinecap="round" strokeLinejoin="round">
+      <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+      <polyline points="14 2 14 8 20 8" />
+      <line x1="16" y1="13" x2="8" y2="13" />
+      <line x1="16" y1="17" x2="8" y2="17" />
+      <polyline points="10 9 9 9 8 9" />
+    </svg>
+  ),
+};
 
 const SETTINGS_ITEMS = [
   {
@@ -93,7 +94,12 @@ const SETTINGS_ITEMS = [
   },
 ];
 
-const ALL_NAV_ITEMS = [...NAV_ITEMS, ...SETTINGS_ITEMS];
+const PROFILE_ICON = (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round">
+    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+    <circle cx="12" cy="7" r="4" />
+  </svg>
+);
 
 const SettingsIcon = ({ active }) => (
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={active ? 2.2 : 1.8} strokeLinecap="round" strokeLinejoin="round">
@@ -147,13 +153,6 @@ export default function MainTabs() {
     }
   }, [isSettingsRoute]);
 
-  const currentNav = ALL_NAV_ITEMS.find((item) =>
-    location.pathname.startsWith(item.path)
-  );
-  const pageTitle = isSettingsRoute
-    ? (currentNav?.label ?? "Settings")
-    : (currentNav?.label ?? "ZetPetGo");
-
   return (
     <div className="app-shell">
       {/* Desktop sidebar */}
@@ -175,6 +174,8 @@ export default function MainTabs() {
           ))}
 
           <div className="sidebar__divider" />
+
+          <SidebarNavItem item={REPORT_ITEM} />
 
           {/* Collapsible Settings group */}
           <div className="sidebar__group">
@@ -214,6 +215,11 @@ export default function MainTabs() {
             )}
           </div>
         </nav>
+
+        <button className="sidebar__footer" onClick={() => navigate("/profile")} aria-label="Profile">
+          <span className="sidebar__avatar">{PROFILE_ICON}</span>
+          <span className="sidebar__user-name">Profile</span>
+        </button>
       </aside>
 
       {/* Mobile drawer overlay */}
@@ -245,6 +251,21 @@ export default function MainTabs() {
         </div>
 
         <nav className="drawer__nav">
+          <NavLink
+            to={REPORT_ITEM.path}
+            className={({ isActive }) =>
+              `drawer__item${isActive ? " drawer__item--active" : ""}`
+            }
+            onClick={() => setDrawerOpen(false)}
+          >
+            {({ isActive }) => (
+              <>
+                <span className="drawer__item-icon">{REPORT_ITEM.icon(isActive)}</span>
+                <span className="drawer__item-label">{REPORT_ITEM.label}</span>
+              </>
+            )}
+          </NavLink>
+
           {/* Collapsible Settings group in drawer */}
           <button
             className={`drawer__group-btn${isSettingsRoute ? " drawer__group-btn--active" : ""}`}
@@ -282,35 +303,15 @@ export default function MainTabs() {
             </div>
           )}
         </nav>
+
+        <button className="sidebar__footer" onClick={() => { navigate("/profile"); setDrawerOpen(false); }} aria-label="Profile">
+          <span className="sidebar__avatar">{PROFILE_ICON}</span>
+          <span className="sidebar__user-name">Profile</span>
+        </button>
       </aside>
 
       {/* Main content area */}
       <main className="main-content">
-        <header className="topbar">
-          <div className="topbar__left">
-            <button
-              className="topbar__hamburger"
-              onClick={() => setDrawerOpen(true)}
-              aria-label="Open menu"
-            >
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" width={22} height={22}>
-                <line x1="3" y1="6" x2="21" y2="6" />
-                <line x1="3" y1="12" x2="21" y2="12" />
-                <line x1="3" y1="18" x2="21" y2="18" />
-              </svg>
-            </button>
-            <h1 className="topbar__title">{pageTitle}</h1>
-          </div>
-          <div className="topbar__actions">
-            <button className="topbar__btn" aria-label="Profile" onClick={() => navigate("/profile")}>
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round" width={18} height={18}>
-                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
-                <circle cx="12" cy="7" r="4" />
-              </svg>
-            </button>
-          </div>
-        </header>
-
         <div className="content-area">
           <Outlet />
         </div>
@@ -334,6 +335,22 @@ export default function MainTabs() {
             )}
           </NavLink>
         ))}
+
+        <button
+          type="button"
+          className={`bottom-tabs__item${drawerOpen ? " bottom-tabs__item--active" : ""}`}
+          onClick={() => setDrawerOpen(true)}
+          aria-label="Open menu"
+        >
+          <span className="bottom-tabs__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round">
+              <line x1="3" y1="6" x2="21" y2="6" />
+              <line x1="3" y1="12" x2="21" y2="12" />
+              <line x1="3" y1="18" x2="21" y2="18" />
+            </svg>
+          </span>
+          <span className="bottom-tabs__label">Menu</span>
+        </button>
       </nav>
     </div>
   );

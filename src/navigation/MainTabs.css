@@ -11,7 +11,6 @@
   --sidebar-bg: #ffffff;
   --sidebar-border: #edeef6;
 
-  --topbar-height: 60px;
   --bottom-tabs-height: 64px;
 
   --text-primary:   #1a1a2e;
@@ -304,6 +303,13 @@ button {
   display: flex;
   align-items: center;
   gap: 10px;
+  width: 100%;
+  text-align: left;
+  transition: background var(--transition);
+}
+
+.sidebar__footer:hover {
+  background: var(--bg-page);
 }
 
 .sidebar__avatar {
@@ -341,66 +347,6 @@ button {
   display: flex;
   flex-direction: column;
   overflow: hidden;
-}
-
-/* Topbar */
-.topbar {
-  height: var(--topbar-height);
-  padding: 0 24px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  background: var(--bg-card);
-  border-bottom: 1px solid var(--sidebar-border);
-}
-
-.topbar__left {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-.topbar__hamburger {
-  display: none;
-  width: 36px;
-  height: 36px;
-  border-radius: var(--radius-sm);
-  align-items: center;
-  justify-content: center;
-  color: var(--text-secondary);
-  transition: background var(--transition), color var(--transition);
-}
-
-.topbar__hamburger:hover {
-  background: var(--bg-page);
-  color: var(--text-primary);
-}
-
-.topbar__title {
-  font-size: 17px;
-  font-weight: 600;
-  color: var(--text-primary);
-}
-
-.topbar__actions {
-  display: flex;
-  gap: 6px;
-}
-
-.topbar__btn {
-  width: 36px;
-  height: 36px;
-  border-radius: var(--radius-sm);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--text-secondary);
-  transition: background var(--transition), color var(--transition);
-}
-
-.topbar__btn:hover {
-  background: var(--bg-page);
-  color: var(--text-primary);
 }
 
 /* Content area */
@@ -486,14 +432,6 @@ button {
 
   .content-area {
     padding: 0;
-  }
-
-  .topbar {
-    padding: 0 16px;
-  }
-
-  .topbar__hamburger {
-    display: flex;
   }
 
   /* Drawer overlay */
