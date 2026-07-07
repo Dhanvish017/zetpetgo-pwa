@@ -4,9 +4,7 @@
 .root {
   width: 100%;
   min-height: 100%;
-  background:
-    radial-gradient(900px 480px at 10% -10%, rgba(131, 144, 250, 0.12), transparent 60%),
-    #F4F6FA;
+  background: #f1dffa;
   display: flex;
   flex-direction: column;
   position: relative;
@@ -20,10 +18,10 @@
 .header {
   position: relative;
   z-index: 2;
-  background: #44548e;
+  background: #964db5;
   padding: 24px 24px 44px 24px;
   border-radius: 0 0 28px 28px;
-  box-shadow: 0 12px 30px rgba(15, 23, 42, 0.28);
+  box-shadow: 0 12px 30px rgba(150, 80, 180, 0.25);
   flex-shrink: 0;
   overflow: visible;
 }
@@ -67,16 +65,21 @@
 .headerTitle {
   font-size: 26px;
   font-weight: 800;
-  color: #fff;
+  color: #4c096b;
   letter-spacing: 0.3px;
   line-height: 1.2;
   text-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
 }
 
+.headerTitlePet {
+  color: #f7ad00;
+}
+
+
 .headerSub {
   font-size: 13px;
   font-weight: 500;
-  color: rgba(255, 255, 255, 0.82);
+  color: #ddbcf9;
   margin-top: 4px;
 }
 
@@ -90,14 +93,14 @@
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  background: #fff;
+  background: #5b0c83;
   border-radius: 20px;
   padding: 18px;
-  border: 1px solid rgba(255, 255, 255, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.35);
   cursor: pointer;
   width: 100%;
   margin-bottom: -36px;
-  box-shadow: 0 16px 34px rgba(29, 47, 111, 0.22), 0 2px 8px rgba(29, 47, 111, 0.10);
+  box-shadow: 0 16px 34px rgba(100, 160, 155, 0.28), 0 2px 8px rgba(100, 160, 155, 0.15);
   font-family: inherit;
   text-align: left;
   box-sizing: border-box;
@@ -106,7 +109,7 @@
 
 .heroCard:hover {
   transform: translateY(-3px);
-  box-shadow: 0 20px 40px rgba(29, 47, 111, 0.26), 0 4px 10px rgba(29, 47, 111, 0.12);
+  box-shadow: 0 20px 40px rgba(100, 160, 155, 0.35), 0 4px 10px rgba(100, 160, 155, 0.18);
 }
 
 .heroCard:active {
@@ -125,12 +128,21 @@
   width: 54px;
   height: 54px;
   border-radius: 16px;
-  background: linear-gradient(135deg, rgba(131, 144, 250, 0.18), rgba(21, 101, 192, 0.10));
+  background: rgba(255, 209, 102, 0.15);
+  border: 1px solid rgba(255, 209, 102, 0.25);
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
+  color: #bc96e6;
 }
+
+.heroIconWrap svg {
+  stroke: #bc96e6 !important;
+  fill: none !important;
+  color: #bc96e6 !important;
+}
+
 
 .heroInfo {
   display: flex;
@@ -141,21 +153,21 @@
 .heroTitle {
   font-size: 16px;
   font-weight: 800;
-  color: #1D2F6F;
+  color: #bc96e6;
   letter-spacing: 0.1px;
 }
 
 .heroSub {
   font-size: 12px;
-  color: #64748b;
+  color: #bc96e6
 }
 
 .heroBadge {
   width: 46px;
   height: 46px;
   border-radius: 50%;
-  background: linear-gradient(135deg, #1D2F6F, #2E4390);
-  box-shadow: 0 4px 12px rgba(29, 47, 111, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.25);
+  background: #bc96e6;
+  box-shadow: 0 4px 12px #531299 inset 0 1px 0 rgba(255, 255, 255, 0.3);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -165,7 +177,7 @@
 .heroBadgeText {
   font-size: 20px;
   font-weight: 900;
-  color: #fff;
+  color: #210b2c;
 }
 
 /* =========================
@@ -180,6 +192,10 @@
   -webkit-overflow-scrolling: touch;
   width: 100%;
   box-sizing: border-box;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400' viewBox='0 0 400 400'%3E%3Cg fill='none' stroke='%231D2F6F' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round' stroke-opacity='0.09'%3E%3Cg transform='translate(38,72) rotate(-14) scale(1.05)'%3E%3Ccircle cx='0' cy='0' r='11'/%3E%3Cpath d='M-9,-6 C-18,-8 -19,6 -10,7'/%3E%3Cpath d='M9,-6 C18,-8 19,6 10,7'/%3E%3Cellipse cx='0' cy='6' rx='4' ry='3'/%3E%3Ccircle cx='-4' cy='-2' r='1' fill='%231D2F6F' stroke='none'/%3E%3Ccircle cx='4' cy='-2' r='1' fill='%231D2F6F' stroke='none'/%3E%3C/g%3E%3Cg transform='translate(162,34) rotate(18) scale(0.9)'%3E%3Cpath d='M-9,-13 C-9,-4 -5,0 0,0 C5,0 9,-4 9,-13'/%3E%3Cpath d='M-9,-13 L-9,-17 M9,-13 L9,-17'/%3E%3Cpath d='M0,0 L0,8'/%3E%3Ccircle cx='0' cy='14' r='6'/%3E%3C/g%3E%3Cg transform='translate(284,88) rotate(-9) scale(1.1)'%3E%3Ccircle cx='0' cy='2' r='9'/%3E%3Cpath d='M-7,-5 L-10,-13 L-2,-7 Z'/%3E%3Cpath d='M7,-5 L10,-13 L2,-7 Z'/%3E%3Cpath d='M-8,4 L-15,3 M-8,6.5 L-15,7.5 M-8,9 L-14,11'/%3E%3Cpath d='M8,4 L15,3 M8,6.5 L15,7.5 M8,9 L14,11'/%3E%3Ccircle cx='-3' cy='1' r='1' fill='%231D2F6F' stroke='none'/%3E%3Ccircle cx='3' cy='1' r='1' fill='%231D2F6F' stroke='none'/%3E%3C/g%3E%3Cg transform='translate(365,150) rotate(-40) scale(0.95)'%3E%3Crect x='-16' y='-4' width='22' height='8' rx='1.5'/%3E%3Cpath d='M6,-4 L6,4 M10,-4 L10,4 M14,-4 L14,4'/%3E%3Cpath d='M6,0 L20,0'/%3E%3Cpath d='M-16,-2 L-22,-2 M-16,2 L-22,2'/%3E%3C/g%3E%3Cg transform='translate(96,168) rotate(22) scale(1.15)'%3E%3Cellipse cx='-6' cy='-6' rx='3.4' ry='4.2'/%3E%3Cellipse cx='6' cy='-6' rx='3.4' ry='4.2'/%3E%3Cellipse cx='-10' cy='2' rx='3' ry='3.8'/%3E%3Cellipse cx='10' cy='2' rx='3' ry='3.8'/%3E%3Cellipse cx='0' cy='6' rx='6.5' ry='5.5'/%3E%3C/g%3E%3Cg transform='translate(210,210) rotate(8) scale(0.85)'%3E%3Cpath d='M0,8 C-10,-2 -18,-10 -10,-16 C-4,-20 0,-14 0,-11 C0,-14 4,-20 10,-16 C18,-10 10,-2 0,8 Z'/%3E%3Cpath d='M-14,-4 L-6,-4 L-3,-10 L1,2 L4,-4 L14,-4'/%3E%3C/g%3E%3Cg transform='translate(330,260) rotate(15) scale(1.05)'%3E%3Cpath d='M-16,-3 C-19,-6 -24,-3 -22,1 C-24,5 -19,8 -16,5 L16,5 C19,8 24,5 22,1 C24,-3 19,-6 16,-3 Z'/%3E%3C/g%3E%3Cg transform='translate(60,260) rotate(35) scale(0.9)'%3E%3Crect x='-10' y='-5' width='20' height='10' rx='5'/%3E%3Cline x1='0' y1='-5' x2='0' y2='5'/%3E%3C/g%3E%3Cg transform='translate(175,320) rotate(-15) scale(1.1)'%3E%3Crect x='-3' y='-10' width='6' height='20' rx='1.5'/%3E%3Crect x='-10' y='-3' width='20' height='6' rx='1.5'/%3E%3C/g%3E%3Cg transform='translate(300,350) rotate(10) scale(0.95)'%3E%3Ccircle cx='0' cy='0' r='12'/%3E%3Crect x='-3' y='9' width='6' height='8' rx='1.5'/%3E%3C/g%3E%3Cg transform='translate(40,340) rotate(-8) scale(1.05)'%3E%3Cpath d='M-14,0 C-14,9 -8,14 0,14 C8,14 14,9 14,0'/%3E%3Cellipse cx='0' cy='0' rx='14' ry='4'/%3E%3C/g%3E%3Cg transform='translate(250,40) rotate(30) scale(0.9)'%3E%3Crect x='-14' y='-5' width='28' height='10' rx='5'/%3E%3Ccircle cx='-7' cy='0' r='1' fill='%231D2F6F' stroke='none'/%3E%3Ccircle cx='7' cy='0' r='1' fill='%231D2F6F' stroke='none'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 400px 400px;
+  background-position: -180px -60px;
 }
 
 .sectionTitle {
@@ -203,7 +219,7 @@
   bottom: 1px;
   width: 4px;
   border-radius: 4px;
-  background: linear-gradient(180deg, #8390FA, #1D2F6F);
+  background: linear-gradient(180deg, #c101ec, #811383);
 }
 
 /* =========================
@@ -234,89 +250,92 @@
   box-shadow: 0 10px 24px rgba(29, 47, 111, 0.05), 0 2px 6px rgba(29, 47, 111, 0.03);
 }
 
-/* Light pastel glass gradients and custom color mapping */
+/* Card 1 — Vaccine Pending: light blue */
 .statCard:nth-child(1) {
-  background: linear-gradient(135deg, #FFF5F5, #FFE3E3, #FFF5F5) !important;
+  background: linear-gradient(135deg, #EFF6FF, #DBEAFE, #EFF6FF) !important;
   animation: gradientWave 6s ease infinite, statCardEntrance 0.5s ease-out;
 }
 
 .statCard:nth-child(1) .statNum {
-  color: #E11D48 !important;
+  color: #2563EB !important;
 }
 
 .statCard:nth-child(1) .statLabel {
-  color: #9F1239 !important;
+  color: #1E40AF !important;
 }
 
 .statCard:nth-child(1) .statIconWrap {
-  background: rgba(225, 29, 72, 0.12) !important;
+  background: rgba(37, 99, 235, 0.12) !important;
 }
 
 .statCard:nth-child(1) .statIconWrap svg {
-  stroke: #E11D48 !important;
+  stroke: #2563EB !important;
 }
 
+/* Card 2 — Vaccine Done: softer light blue */
 .statCard:nth-child(2) {
-  background: linear-gradient(135deg, #E6FFFA, #B2F5EA, #E6FFFA) !important;
+  background: linear-gradient(135deg, #F0F9FF, #E0F2FE, #F0F9FF) !important;
   animation: gradientWave 6s ease infinite, statCardEntrance 0.5s ease-out 0.08s backwards;
 }
 
 .statCard:nth-child(2) .statNum {
-  color: #0D9488 !important;
+  color: #0284C7 !important;
 }
 
 .statCard:nth-child(2) .statLabel {
-  color: #115E59 !important;
+  color: #075985 !important;
 }
 
 .statCard:nth-child(2) .statIconWrap {
-  background: rgba(13, 148, 136, 0.12) !important;
+  background: rgba(2, 132, 199, 0.12) !important;
 }
 
 .statCard:nth-child(2) .statIconWrap svg {
-  stroke: #0D9488 !important;
+  stroke: #0284C7 !important;
 }
 
+/* Card 3 — Deworming Pending: light green */
 .statCard:nth-child(3) {
-  background: linear-gradient(135deg, #FAF5FF, #E9D8FD, #FAF5FF) !important;
+  background: linear-gradient(135deg, #F0FDF4, #DCFCE7, #F0FDF4) !important;
   animation: gradientWave 6s ease infinite, statCardEntrance 0.5s ease-out 0.16s backwards;
 }
 
 .statCard:nth-child(3) .statNum {
-  color: #7C3AED !important;
+  color: #16A34A !important;
 }
 
 .statCard:nth-child(3) .statLabel {
-  color: #5B21B6 !important;
+  color: #166534 !important;
 }
 
 .statCard:nth-child(3) .statIconWrap {
-  background: rgba(124, 58, 237, 0.12) !important;
+  background: rgba(22, 163, 74, 0.12) !important;
 }
 
 .statCard:nth-child(3) .statIconWrap svg {
-  stroke: #7C3AED !important;
+  stroke: #16A34A !important;
 }
 
+/* Card 4 — Deworming Done: softer light green */
 .statCard:nth-child(4) {
-  background: linear-gradient(135deg, #F0FDF4, #DCFCE7, #F0FDF4) !important;
+  background: linear-gradient(135deg, #ECFDF5, #D1FAE5, #ECFDF5) !important;
   animation: gradientWave 6s ease infinite, statCardEntrance 0.5s ease-out 0.24s backwards;
 }
 
 .statCard:nth-child(4) .statNum {
-  color: #16A34A !important;
+  color: #059669 !important;
 }
 
 .statCard:nth-child(4) .statLabel {
-  color: #166534 !important;
+  color: #065F46 !important;
 }
 
 .statCard:nth-child(4) .statIconWrap {
-  background: rgba(22, 163, 74, 0.12) !important;
+  background: rgba(5, 150, 105, 0.12) !important;
 }
 
 .statCard:nth-child(4) .statIconWrap svg {
-  stroke: #16A34A !important;
+  stroke: #059669 !important;
 }
 
 .statCard::before {
@@ -809,6 +828,7 @@
 
   .body {
     padding: 48px 16px 16px 16px;
+    background-size: 300px 300px;
   }
 
   .statGrid {

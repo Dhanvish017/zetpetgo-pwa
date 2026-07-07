@@ -121,7 +121,7 @@ const dashboardScreen = ({ onOpenDrawer }) => {
         <div className={styles.headerRow}>
 
           <div className={styles.headerText}>
-            <span className={styles.headerTitle}>ZetPetGo</span>
+            <span className={styles.headerTitle}>Zet<span className={styles.headerTitlePet}>Pet</span>Go</span>
             <span className={styles.headerSub}>
               {loading ? "Loading..." : `${todayPending} pending • ${todayCompleted} done today`}
             </span>
@@ -151,7 +151,7 @@ const dashboardScreen = ({ onOpenDrawer }) => {
       <div className={styles.body}>
 
         {/* Stats Grid */}
-        <span className={styles.sectionTitle}>📊 Today's Overview</span>
+        <span className={styles.sectionTitle}>TODAY'S OVERVIEW</span>
         <div className={styles.statGrid}>
           <StatCard icon="shield-checkmark" label="Vaccine Pending" value={stats.vaccine.pending || 0} gradient="linear-gradient(135deg,#1565C0,#1976D2)" loading={loading} />
           <StatCard icon="checkmark-circle" label="Vaccine Done" value={stats.vaccine.completed || 0} gradient="linear-gradient(135deg,#0097A7,#00BCD4)" loading={loading} />
@@ -160,7 +160,7 @@ const dashboardScreen = ({ onOpenDrawer }) => {
         </div>
 
         {/* Visits */}
-        <span className={styles.sectionTitle}>🏥 Today's Visits</span>
+        <span className={styles.sectionTitle}>TODAY'S VISITS</span>
         <div className={styles.visitRow}>
           <VisitCard icon="walk-outline" label="Visited Today" value={stats.visits.visited || 0} color="#1976D2" bg="#E3F2FD" loading={loading} />
           <VisitCard icon="time-outline" label="Yet to Visit" value={stats.visits.notVisited || 0} color="#F57C00" bg="#FFF3E0" loading={loading} />
