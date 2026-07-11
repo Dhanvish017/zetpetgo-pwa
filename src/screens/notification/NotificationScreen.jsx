@@ -52,7 +52,10 @@ const TabButton = ({ label, value, activeTab, setActiveTab }) => (
 // NOTIFICATION CARD
 // =====================
 const NotificationCard = ({ item, onSend, showLabel = false, isThankYou = false }) => {
-  const isCompleted = isThankYou ? !!item.sent : (item.completed || item.status === "completed");
+  // ✅ For thank you tab — completed means visited (mark-visited was called)
+  const isCompleted = isThankYou
+    ? !!item.visited || !!item.sent
+    : (item.completed || item.status === "completed");
 
   const getSpecialBadge = (t) => {
     if (t === "first_time") return { bg: "#F5F3FF", color: "#8b5cf6", label: "New Owner" };
@@ -79,7 +82,15 @@ const NotificationCard = ({ item, onSend, showLabel = false, isThankYou = false 
         {showLabel && item.label && (
           <span className={styles.specialLabel}>{item.label}</span>
         )}
-        {isCompleted && (
+        {/* ✅ Visited badge for thank you tab */}
+        {isThankYou && isCompleted && (
+          <div className={styles.completedBadge}>
+            <Icon name="checkmark-circle" size={12} color="#16A34A" />
+            <span className={styles.completedText}>Visited ✅</span>
+          </div>
+        )}
+        {/* Sent badge for other tabs */}
+        {!isThankYou && isCompleted && (
           <div className={styles.completedBadge}>
             <Icon name="checkmark-circle" size={12} color="#16A34A" />
             <span className={styles.completedText}>Sent</span>
@@ -193,6 +204,9 @@ const NotificationsScreen = () => {
     if (activeTab === "thanks") fetchThanks();
   }, [activeTab]);
 
+  // =====================
+  // SEND WHATSAPP
+  // =====================
   const sendWhatsApp = async (item) => {
     try {
       const reminderPayload = {
@@ -203,6 +217,7 @@ const NotificationsScreen = () => {
         species: item.species || "",
       };
 
+      // Determine message type
       let messageType = "reminder";
       if (activeTab === "missed") messageType = "missed";
       else if (activeTab === "special") {
@@ -211,38 +226,49 @@ const NotificationsScreen = () => {
         else messageType = "new_owner";
       } else if (activeTab === "thanks") messageType = "thankyou";
 
-      const buildRes = await api.post(
-        "/api/notify/build-whatsapp-message",
-        { reminder: reminderPayload, messageType }
-      );
+      // Build WhatsApp message
+      const buildRes = await api.post("/api/notify/build-whatsapp-message", {
+        reminder: reminderPayload,
+        messageType,
+      });
       const message = buildRes.data.message;
 
+      // Format phone number
       let phone = item.ownerPhone?.replace(/\D/g, "");
       if (!phone) { alert("Owner phone number missing"); return; }
       if (phone.length === 10) phone = "91" + phone;
-      else if (!(phone.length === 12 && phone.startsWith("91"))) { alert("Invalid phone number"); return; }
+      else if (!(phone.length === 12 && phone.startsWith("91"))) {
+        alert("Invalid phone number"); return;
+      }
 
-      const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+      // Open WhatsApp
+      window.open(`https://wa.me/${phone}?text=${encodeURIComponent(message)}`, "_blank");
 
-      const whatsappUrl = isMobile
-        ? `https://wa.me/${phone}?text=${encodeURIComponent(message)}`
-        : `https://web.whatsapp.com/send?phone=${phone}&text=${encodeURIComponent(message)}`;
-
-      window.open(whatsappUrl, "_blank");
-
+      // ✅ Correct endpoint per tab
       let endpoint = "send-whatsapp";
       if (activeTab === "missed") endpoint = "send-followup";
       else if (activeTab === "special") endpoint = "send-special";
+      else if (activeTab === "thanks") endpoint = "mark-visited"; // ✅ marks visited + thankyou_sent = true
 
-      await api.post(
-        `/api/notifications/${endpoint}/${item.animalId}`,
-        { type: item.type, scheduleRowId: item.scheduleRowId, ownerId: item.ownerId, specialType: item.specialType }
-      );
+      // Log to backend
+      await api.post(`/api/notifications/${endpoint}/${item.animalId}`, {
+        type: item.type,
+        ownerId: item.ownerId,
+        specialType: item.specialType,
+        scheduleRowId: item.scheduleRowId,
+      });
 
+      // Save to local cache
       saveSentId(item._id);
       setSentIds(getSentIds());
 
-      const markDone = (list) => list.map(i => i._id === item._id ? { ...i, completed: true } : i);
+      // ✅ Update UI immediately
+      const markDone = (list) =>
+        list.map(i =>
+          i._id === item._id
+            ? { ...i, completed: true, visited: true, sent: true }
+            : i
+        );
 
       if (activeTab === "notification") {
         setNotificationData(prev => ({
@@ -252,7 +278,16 @@ const NotificationsScreen = () => {
         }));
       } else if (activeTab === "missed") setMissedList(prev => markDone(prev));
       else if (activeTab === "special") setSpecialList(prev => markDone(prev));
-      else if (activeTab === "thanks") setThanksList(prev => prev.map(i => i._id === item._id ? { ...i, sent: true } : i));
+      else if (activeTab === "thanks") {
+        // ✅ Mark as visited in thank you list
+        setThanksList(prev =>
+          prev.map(i =>
+            i._id === item._id
+              ? { ...i, visited: true, sent: true }
+              : i
+          )
+        );
+      }
 
     } catch (err) {
       console.error("SEND ERROR:", err.message);
@@ -260,7 +295,7 @@ const NotificationsScreen = () => {
     }
   };
 
-  // Derived data
+  // ---- Derived data ----
   const filteredToday = notificationData.today.filter(i => i.type === activeTypeTab);
   const filteredTomorrow = notificationData.tomorrow.filter(i => i.type === activeTypeTab);
   const filteredSeventhDay = notificationData.seventhDay.filter(i => i.type === activeTypeTab);
@@ -356,7 +391,6 @@ const NotificationsScreen = () => {
 
           ) : activeTab === "special" ? (
             <>
-              {/* SPECIAL SUB-TABS */}
               <div className={styles.specialTabRow}>
                 <button
                   type="button"
@@ -400,13 +434,22 @@ const NotificationsScreen = () => {
                 <EmptyState text="No messages here" />
               ) : (
                 activeSpecialList.map((item) => (
-                  <NotificationCard key={`${item._id || item.animalId}-${item.specialType}`} item={item} onSend={sendWhatsApp} showLabel />
+                  <NotificationCard
+                    key={`${item._id || item.animalId}-${item.specialType}`}
+                    item={item}
+                    onSend={sendWhatsApp}
+                    showLabel
+                  />
                 ))
               )}
             </>
 
           ) : listData.length === 0 ? (
-            <EmptyState text="No data available" />
+            <EmptyState text={
+              activeTab === "thanks"
+                ? "No thank you messages to send"
+                : "No data available"
+            } />
           ) : (
             listData.map((item, index) => (
               <NotificationCard

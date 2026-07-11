@@ -47,6 +47,11 @@ const Icon = ({ name, size = 20, color = "currentColor" }) => {
         <polyline points="6 9 12 15 18 9" />
       </svg>
     ),
+    checkmark: (
+      <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+        <polyline points="20 6 9 17 4 12" />
+      </svg>
+    ),
     search: (
       <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
         <circle cx="11" cy="11" r="8" /><line x1="21" y1="21" x2="16.65" y2="16.65" />
@@ -268,6 +273,7 @@ const AddAnimalScreen = () => {
     ownerEmail: "",
     ownerPhone: "",
     address: "",
+    new_owner: false,
     vaccineType: "",
     stage: "",
     vaccineDate: "",
@@ -375,6 +381,7 @@ const AddAnimalScreen = () => {
           phone: formData.ownerPhone,
           email: formData.ownerEmail,
           address: formData.address,
+          new_owner: formData.new_owner,
         }
       );
 
@@ -570,6 +577,23 @@ const AddAnimalScreen = () => {
             onChange={(e) => handleChange("address", e.target.value)}
             multiline
           />
+
+          <button
+            type="button"
+            className={styles.checkboxRow}
+            onClick={() => handleChange("new_owner", !formData.new_owner)}
+            aria-pressed={formData.new_owner}
+          >
+            <span
+              className={`${styles.checkboxBox} ${formData.new_owner ? styles.checkboxBoxChecked : ""}`}
+            >
+              {formData.new_owner && <Icon name="checkmark" size={13} color="#fff" />}
+            </span>
+            <span className={styles.checkboxTextWrap}>
+              <span className={styles.checkboxLabel}>Is the owner a first-time pet owner?</span>
+              <span className={styles.checkboxSubtitle}>Optional</span>
+            </span>
+          </button>
         </div>
 
         {/* Save Button */}

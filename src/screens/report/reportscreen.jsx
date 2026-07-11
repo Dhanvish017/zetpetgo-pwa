@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import api from "../../lib/api";
 import styles from "./reportscreen.module.css";
-
-const API_BASE = "https://vetcare-1.onrender.com";
 
 const DATE_FILTERS = [
     { label: "7 Days", value: "7" },
     { label: "30 Days", value: "30" },
+    { label: "Dormant", value: "never" },
     { label: "All", value: "0" },
 ];
 
@@ -20,10 +20,10 @@ const COLUMNS = [
 
 const fmt = (dateStr) => {
     if (!dateStr) return "—";
-    return new Date(dateStr).toLocaleDateString("en-IN", { day: "2-digit", month: "short", year: "numeric" });
+    return new Date(dateStr).toLocaleDateString("en-IN", {
+        day: "2-digit", month: "short", year: "numeric"
+    });
 };
-
-const toISO = (date) => new Date(date).toISOString().split("T")[0];
 
 // =====================
 // ICONS
@@ -41,6 +41,7 @@ const Icon = ({ name, size = 16, color = "currentColor" }) => {
         "swap-vertical-outline": (<svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="17 1 17 23 13 19" /><polyline points="7 23 7 1 11 5" /></svg>),
         "document-outline": (<svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" /><polyline points="14 2 14 8 20 8" /></svg>),
         close: (<svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="6" x2="6" y2="18" /><line x1="6" y1="6" x2="18" y2="18" /></svg>),
+        "moon-outline": (<svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" /></svg>),
     };
     return <span style={{ display: "inline-flex", alignItems: "center" }}>{icons[name] || null}</span>;
 };
@@ -54,7 +55,7 @@ const SortIcon = ({ field, sortField, ascending }) => {
 };
 
 // =====================
-// HEALTH REPORT SCREEN
+// REPORT SCREEN
 // =====================
 const ReportScreen = () => {
     const navigate = useNavigate();
@@ -65,37 +66,38 @@ const ReportScreen = () => {
     const [sortField, setSortField] = useState("date");
     const [ascending, setAscending] = useState(false);
     const [data, setData] = useState([]);
-    const [stats, setStats] = useState({ total: 0, pending: 0, completed: 0 });
+    const [stats, setStats] = useState({ total: 0, pending: 0, completed: 0, dormant: 0 });
     const [loading, setLoading] = useState(false);
-
     const [startDate, setStartDate] = useState("");
     const [endDate, setEndDate] = useState("");
     const [dateModalOpen, setDateModalOpen] = useState(false);
 
     const hasDateRange = startDate && endDate;
+    const isDormant = dateFilter === "never";
 
     useEffect(() => {
         let cancelled = false;
         const fetchReport = async () => {
             try {
                 setLoading(true);
-                const token = localStorage.getItem("token");
+
                 const params = new URLSearchParams({
                     category: reportType,
-                    days: hasDateRange ? "0" : dateFilter,
+                    days: hasDateRange ? "0" : isDormant ? "0" : dateFilter,
                     search: search.trim(),
                     sortField,
                     order: ascending ? "asc" : "desc",
+                    ...(isDormant ? { neverVisited: "true" } : {}),  // ✅ dormant param
                     ...(startDate ? { startDate } : {}),
                     ...(endDate ? { endDate } : {}),
                 });
-                const res = await fetch(`${API_BASE}/api/report?${params}`, {
-                    headers: { Authorization: `Bearer ${token}` },
-                });
-                const json = await res.json();
+
+                const res = await api.get(`/api/report?${params}`);
+                const json = res.data;
+
                 if (!cancelled) {
                     setData(json.data || []);
-                    setStats(json.stats || { total: 0, pending: 0, completed: 0 });
+                    setStats(json.stats || { total: 0, pending: 0, completed: 0, dormant: 0 });
                 }
             } catch (err) {
                 console.log("Report fetch error:", err.message);
@@ -114,9 +116,11 @@ const ReportScreen = () => {
 
     const clearDateRange = () => { setStartDate(""); setEndDate(""); };
 
-    const headerSubLabel = hasDateRange
-        ? `${fmt(startDate)} – ${fmt(endDate)}`
-        : dateFilter === "0" ? "All Time" : `Last ${dateFilter} Days`;
+    const headerSubLabel =
+        hasDateRange ? `${fmt(startDate)} – ${fmt(endDate)}`
+            : isDormant ? "Dormant Patients"
+                : dateFilter === "0" ? "All Time"
+                    : `Last ${dateFilter} Days`;
 
     return (
         <div className={styles.root}>
@@ -163,9 +167,12 @@ const ReportScreen = () => {
                             <button
                                 key={f.value}
                                 type="button"
-                                className={`${styles.chip} ${!hasDateRange && dateFilter === f.value ? styles.chipActive : ""}`}
+                                className={`${styles.chip} ${!hasDateRange && dateFilter === f.value ? styles.chipActive : ""} ${f.value === "never" && !hasDateRange && dateFilter === "never" ? styles.chipDormant : ""}`}
                                 onClick={() => { clearDateRange(); setDateFilter(f.value); }}
                             >
+                                {f.value === "never" && (
+                                    <Icon name="moon-outline" size={12} color={dateFilter === "never" ? "#fff" : "#f59e0b"} />
+                                )}
                                 <span className={`${styles.chipText} ${!hasDateRange && dateFilter === f.value ? styles.chipTextActive : ""}`}>
                                     {f.label}
                                 </span>
@@ -195,6 +202,16 @@ const ReportScreen = () => {
                     </button>
                 </div>
 
+                {/* DORMANT BANNER */}
+                {isDormant && (
+                    <div className={styles.dormantBanner}>
+                        <Icon name="moon-outline" size={16} color="#f59e0b" />
+                        <span className={styles.dormantBannerText}>
+                            Showing patients who received reminders but never visited
+                        </span>
+                    </div>
+                )}
+
                 {/* STATS */}
                 <div className={styles.statsRow}>
                     <div className={styles.statItem}>
@@ -211,6 +228,15 @@ const ReportScreen = () => {
                         <span className={styles.statNum} style={{ color: "#16a34a" }}>{stats.completed}</span>
                         <span className={styles.statLabel}>Completed</span>
                     </div>
+                    {isDormant && (
+                        <>
+                            <div className={styles.statDivider} />
+                            <div className={styles.statItem}>
+                                <span className={styles.statNum} style={{ color: "#f59e0b" }}>{stats.total}</span>
+                                <span className={styles.statLabel}>Dormant</span>
+                            </div>
+                        </>
+                    )}
                 </div>
 
                 {/* SEARCH */}
@@ -220,7 +246,9 @@ const ReportScreen = () => {
                         <input
                             className={styles.searchInput}
                             type="text"
-                            placeholder={`Search pet, owner or ${reportType === "vaccine" ? "vaccine" : "deworming"} name...`}
+                            placeholder={isDormant
+                                ? "Search dormant patients..."
+                                : `Search pet, owner or ${reportType === "vaccine" ? "vaccine" : "deworming"} name...`}
                             value={search}
                             onChange={(e) => setSearch(e.target.value)}
                         />
@@ -237,7 +265,7 @@ const ReportScreen = () => {
                     <div className={styles.tableScroll}>
                         <table className={styles.table}>
                             <thead>
-                                <tr className={styles.tableHead}>
+                                <tr className={`${styles.tableHead} ${isDormant ? styles.tableHeadDormant : ""}`}>
                                     {COLUMNS.map(({ key, label }) => (
                                         <th key={key} className={styles.th} onClick={() => handleSort(key)}>
                                             <span className={styles.thInner}>
@@ -252,7 +280,7 @@ const ReportScreen = () => {
                                 {!loading && data.map((item, index) => (
                                     <tr
                                         key={item.id?.toString() || index}
-                                        className={`${styles.tableRow} ${index % 2 === 0 ? styles.rowEven : styles.rowOdd}`}
+                                        className={`${styles.tableRow} ${index % 2 === 0 ? styles.rowEven : styles.rowOdd} ${isDormant ? styles.rowDormant : ""}`}
                                         onClick={() => navigate(`/animal/${item.animalId}`)}
                                     >
                                         <td className={styles.cell}>{item.petName}</td>
@@ -260,11 +288,17 @@ const ReportScreen = () => {
                                         <td className={`${styles.cell} ${styles.typeCell}`}>{item.type}</td>
                                         <td className={`${styles.cell} ${styles.dateCell}`}>{fmt(item.date)}</td>
                                         <td className={styles.cell}>
-                                            <span className={`${styles.statusBadge} ${item.status === "pending" ? styles.badgePending : styles.badgeCompleted}`}>
-                                                <span className={item.status === "pending" ? styles.statusPending : styles.statusCompleted}>
-                                                    {item.status === "pending" ? "Pending" : "Done"}
+                                            {isDormant ? (
+                                                <span className={`${styles.statusBadge} ${styles.badgeDormant}`}>
+                                                    <span className={styles.statusDormant}>Dormant</span>
                                                 </span>
-                                            </span>
+                                            ) : (
+                                                <span className={`${styles.statusBadge} ${item.status === "pending" ? styles.badgePending : styles.badgeCompleted}`}>
+                                                    <span className={item.status === "pending" ? styles.statusPending : styles.statusCompleted}>
+                                                        {item.status === "pending" ? "Pending" : "Done"}
+                                                    </span>
+                                                </span>
+                                            )}
                                         </td>
                                     </tr>
                                 ))}
@@ -282,8 +316,13 @@ const ReportScreen = () => {
                     {/* EMPTY */}
                     {!loading && data.length === 0 && (
                         <div className={styles.emptyContainer}>
-                            <Icon name="document-outline" size={40} color="#c7d2fe" />
-                            <span className={styles.emptyText}>No records found</span>
+                            <Icon name={isDormant ? "moon-outline" : "document-outline"} size={40} color={isDormant ? "#f59e0b" : "#c7d2fe"} />
+                            <span className={styles.emptyText}>
+                                {isDormant ? "No dormant patients found 🎉" : "No records found"}
+                            </span>
+                            {isDormant && (
+                                <span className={styles.emptySubText}>All patients have visited!</span>
+                            )}
                         </div>
                     )}
 

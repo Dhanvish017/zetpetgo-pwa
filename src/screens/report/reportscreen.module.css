@@ -473,7 +473,9 @@
 }
 
 @keyframes spin {
-    to { transform: rotate(360deg); }
+    to {
+        transform: rotate(360deg);
+    }
 }
 
 .emptyContainer {
@@ -665,4 +667,62 @@
     .chipSection {
         gap: 6px;
     }
+}
+
+/* Dormant chip */
+.chipDormant {
+    border-color: #f59e0b;
+    background: #f59e0b;
+    gap: 4px;
+}
+
+/* Dormant banner */
+.dormantBanner {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 8px;
+    background: #fffbeb;
+    border: 1px solid #fde68a;
+    border-radius: 10px;
+    padding: 10px 14px;
+    margin-bottom: 10px;
+}
+
+.dormantBannerText {
+    font-size: 13px;
+    color: #92400e;
+    font-weight: 500;
+}
+
+/* Dormant table header */
+.tableHeadDormant {
+    background: #f59e0b;
+}
+
+/* Dormant row highlight */
+.rowDormant {
+    background: #fffbeb !important;
+}
+
+.rowDormant:hover {
+    background: #fef3c7 !important;
+}
+
+/* Dormant status badge */
+.badgeDormant {
+    background: #fef3c7;
+}
+
+.statusDormant {
+    font-size: 10px;
+    font-weight: 700;
+    color: #92400e;
+}
+
+/* Empty subtext */
+.emptySubText {
+    font-size: 13px;
+    color: #94a3b8;
+    text-align: center;
 }
