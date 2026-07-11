@@ -2,8 +2,9 @@
    ROOT — fills full page
 ========================= */
 .root {
-    min-height: 100vh;
+    height: 100%;
     width: 100%;
+    overflow: hidden;
     background-color: #f1dffa;
     display: flex;
     flex-direction: column;
@@ -68,6 +69,8 @@
 ========================= */
 .pageBody {
     flex: 1;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
     display: flex;
     flex-direction: column;
     padding: 12px 16px 16px 16px;

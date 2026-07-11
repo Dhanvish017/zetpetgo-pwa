@@ -2,7 +2,8 @@
    ROOT CONTAINER
 ========================= */
 .container {
-  min-height: 100vh;
+  height: 100%;
+  overflow: hidden;
   width: 100%;
   background: #f1dffa;
   display: flex;

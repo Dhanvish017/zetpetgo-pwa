@@ -145,53 +145,57 @@ const ProfileScreen = () => {
           </div>
         </div>
 
-        {/* PROFILE CARD */}
-        <div className={styles.card}>
-          <ProfileRow
-            icon="person"
-            label="Account Type"
-            value={user.accountType === "clinic" ? "Clinic" : "Individual Doctor"}
-          />
-          {user.accountType === "clinic" && (
+        {/* SCROLLABLE BODY (header above stays fixed) */}
+        <div className={styles.scrollBody}>
+
+          {/* PROFILE CARD */}
+          <div className={styles.card}>
             <ProfileRow
-              icon="business"
-              label="Clinic Name"
-              value={user.clinicName}
+              icon="person"
+              label="Account Type"
+              value={user.accountType === "clinic" ? "Clinic" : "Individual Doctor"}
             />
-          )}
-          <ProfileRow
-            icon="mail"
-            label="Email"
-            value={user.email || supabaseUser?.email}
-          />
-          <ProfileRow
-            icon="location"
-            label="Address"
-            value={user.address}
-          />
+            {user.accountType === "clinic" && (
+              <ProfileRow
+                icon="business"
+                label="Clinic Name"
+                value={user.clinicName}
+              />
+            )}
+            <ProfileRow
+              icon="mail"
+              label="Email"
+              value={user.email || supabaseUser?.email}
+            />
+            <ProfileRow
+              icon="location"
+              label="Address"
+              value={user.address}
+            />
+          </div>
+
+          {/* ACTION BUTTONS */}
+          <div className={styles.actions}>
+            <button
+              type="button"
+              className={styles.editBtn}
+              onClick={() => navigate("/create-account")}
+            >
+              <Icon name="create-outline" size={20} color="#fff" />
+              <span className={styles.btnText}>Edit Profile</span>
+            </button>
+
+            <button
+              type="button"
+              className={styles.logoutBtn}
+              onClick={() => setShowLogoutConfirm(true)}
+            >
+              <Icon name="log-out-outline" size={20} color="#fff" />
+              <span className={styles.btnText}>Logout</span>
+            </button>
+          </div>
+
         </div>
-
-        {/* ACTION BUTTONS */}
-        <div className={styles.actions}>
-          <button
-            type="button"
-            className={styles.editBtn}
-            onClick={() => navigate("/create-account")}
-          >
-            <Icon name="create-outline" size={20} color="#fff" />
-            <span className={styles.btnText}>Edit Profile</span>
-          </button>
-
-          <button
-            type="button"
-            className={styles.logoutBtn}
-            onClick={() => setShowLogoutConfirm(true)}
-          >
-            <Icon name="log-out-outline" size={20} color="#fff" />
-            <span className={styles.btnText}>Logout</span>
-          </button>
-        </div>
-
       </div>
 
       {/* LOGOUT CONFIRM MODAL */}
