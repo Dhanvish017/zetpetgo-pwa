@@ -58,6 +58,7 @@
    MAIN TABS
 ========================= */
 .tabContainer {
+    flex-shrink: 0;
     display: flex;
     flex-direction: row;
     padding: 16px 24px;
@@ -99,6 +100,7 @@
    SUB-TABS
 ========================= */
 .subTabContainer {
+    flex-shrink: 0;
     display: flex;
     flex-direction: row;
     margin: 0 24px 12px 24px;
