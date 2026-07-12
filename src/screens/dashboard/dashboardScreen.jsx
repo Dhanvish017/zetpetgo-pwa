@@ -137,7 +137,7 @@ const dashboardScreen = ({ onOpenDrawer }) => {
             <div className={styles.heroInfo}>
               <span className={styles.heroTitle}>Today's Schedule</span>
               <span className={styles.heroSub}>
-                {loading ? "Loading..." : todayData.total === 0 ? "No visits today 🎉" : `${todayData.total} animal${todayData.total > 1 ? "s" : ""} due`}
+                {loading ? "Loading..." : todayData.total === 0 ? "No visits today 🎉" : `${todayData.total} animal${todayData.total > 1 ? "s" : ""}`}
               </span>
             </div>
           </div>

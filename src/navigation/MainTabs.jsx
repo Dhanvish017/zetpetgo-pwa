@@ -159,11 +159,7 @@ export default function MainTabs() {
       <aside className="sidebar">
         <div className="sidebar__header">
           <div className="sidebar__logo">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
-              <path d="M12 2L2 7l10 5 10-5-10-5z" />
-              <path d="M2 17l10 5 10-5" />
-              <path d="M2 12l10 5 10-5" />
-            </svg>
+            <img src="/web-app-manifest-192x192.png" alt="" className="sidebar__logo-img" />
           </div>
           <span className="sidebar__brand">Zetpetgo</span>
         </div>
@@ -231,11 +227,7 @@ export default function MainTabs() {
       <aside className={`drawer ${drawerOpen ? "drawer--open" : ""}`}>
         <div className="drawer__header">
           <div className="sidebar__logo">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
-              <path d="M12 2L2 7l10 5 10-5-10-5z" />
-              <path d="M2 17l10 5 10-5" />
-              <path d="M2 12l10 5 10-5" />
-            </svg>
+            <img src="/web-app-manifest-192x192.png" alt="" className="sidebar__logo-img" />
           </div>
           <span className="sidebar__brand">ZetPetGo</span>
           <button
